@@ -5,29 +5,32 @@ package model;
  * @author Pham Duc Hien
  */
 public class Book {
-    
+
     private String id;
     private String name;
     private String author;
     private String nxb;
-    
+
     /**
-     * two of type: REFERENCE and BORROWABLE
+     *@attribute type: two of type: REFERENCE and BORROWABLE
      */
     private int type;
-    
+
     /**
-     * two of status: AVAILABLE & UNAVALABLE
+     *@attribute status: two of status: AVAILABLE & UNAVALABLE
      */
     private int status;
-    
+
     /**
-     * price of book
+     *@attribute price: price of book
      */
     private int price;
 
+    /**
+    * constructor
+    */
     public Book() {
-        
+
     }
 
     public String getId() {
@@ -85,6 +88,5 @@ public class Book {
     public void setPrice(int price) {
         this.price = price;
     }
-    
     
 }

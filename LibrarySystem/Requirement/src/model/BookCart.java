@@ -109,7 +109,7 @@ public class BookCart {
      * @return true nếu thành công
      */
     public boolean addBookToCart(Book book) {
-        if(this.number >= 5 || book.status == UNAVALIBALE) {
+        if(this.number >= 5 || book.getStatus() == UNAVALIBALE) {
             return false;
         } else {
             this.books.push(book);
@@ -120,7 +120,7 @@ public class BookCart {
 
     public boolean hasUnReturnBook(){
         for (i=0; i < number; i++) {
-            if(books[i].status == NOT_RETURNED){
+            if(books[i].getStatus() == NOT_RETURNED){
                 return true;
             }
         }
