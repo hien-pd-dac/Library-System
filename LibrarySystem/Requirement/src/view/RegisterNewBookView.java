@@ -24,6 +24,10 @@ class RegisterNewBookView extends JPanel implements ActionListener {
     * attribute tfBook nhập tên sách.
     */
     private JTextField tfBook;
+	/**
+	*@attribute idSach để nhập mã của sách
+	*/
+	private JtextField idSach;
     
      /**
     * attribute tfBook nhập tên tác giả.
