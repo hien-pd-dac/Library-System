@@ -16,7 +16,7 @@ public class BorrowHistory {
     /**
      * @attribute bookCart : thông tin về các giỏ sách đã đăng kí.
      */
-    private BookCart[] bookCart;
+    private BookCart[] bookCarts;
 
     public Card getCard() {
         return card;
@@ -35,8 +35,8 @@ public class BorrowHistory {
     }
 
     public boolean hasUnreturnBook() {
-        int number = bookCart.count();
-        if(BookCart[number-1].hasUnReturnBook()){
+        int number = bookCarts.count();
+        if(bookCarts[number-1].hasUnReturnBook()){
             return true;
         } else {
             return false;

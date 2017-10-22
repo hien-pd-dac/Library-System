@@ -10,7 +10,7 @@ public class BookCart {
    /**
     * @attribute cardID save cardID of borrower
     */
-   private string cardID;
+   private String cardID;
 
    /**
     * @attribute number save number of books in bookCart

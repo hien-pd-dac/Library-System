@@ -3,7 +3,6 @@ package view;
 import javax.swing.*;
 import java.awt.event.ActionListener;
 import model.Card;
-
 /**
     * Created by Pham Duc Hien on 21/10/2017
     * class RegisterBorrowBookView có nhiệm vụ tạo giao diện đăng kí mượn sách.
