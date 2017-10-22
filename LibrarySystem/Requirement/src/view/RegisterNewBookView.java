@@ -1,5 +1,5 @@
-import Model.*;
-import Controller.*;
+import modelodel.*;
+import controller.*;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import javax.swing.*;
@@ -67,7 +67,7 @@ class RegisterNewBookView extends JPanel implements ActionListener {
      * @param book là đối tượng của lớp Book
      */
     }
-    public void setBookController(Book book) {
+    public void setBook(Book book) {
         this.book = book;
     }
     /**

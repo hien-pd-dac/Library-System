@@ -1,5 +1,5 @@
-import Model.*;
-import Controller.*;
+import model.*;
+import controller.*;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import javax.swing.*;
@@ -39,7 +39,7 @@ class SearchbookView extends JPanel implements ActionListener {
     /**
     * contructor khởi tạo UI cho lớp
     */
-    public RegisterBorrowBookView(){
+    public SearchBookView(){
         this.add(tfSearch );
         this.add(rbQuanTam);
         btnSearch.addActionListener(this);
@@ -57,8 +57,7 @@ class SearchbookView extends JPanel implements ActionListener {
             Add a comment to this line
             Book = SearchBookController.SearchBook(tfSearch);
             if(book!=null){
-                this.setVisible(false);
-                SearchBookView.setVisible(true);
+                this.reload()
             }
            else{
                 System.out.println("Find not found");
