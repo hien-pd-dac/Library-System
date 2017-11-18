@@ -1,1 +1,3 @@
 *.asta.lock
+/Project/nbproject/private/
+/Project/build/
