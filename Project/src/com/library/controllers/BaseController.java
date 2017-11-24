@@ -3,12 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.library.views;
+package com.library.controllers;
 
 /**
  *
- * @author hpd
+ * @author Ronaldo Hanh
  */
-public class SearchBorrowedHistory {
-    
+public interface BaseController {
+    void hideGUI();
+    void showGUI();
 }
