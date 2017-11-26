@@ -7,6 +7,7 @@ package com.library.helpers;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -22,8 +23,9 @@ public class ConnectDatabase {
     private final String dbName;
     private final String username;
     private final String password;
-    private Connection con;
-    private Statement stmt;
+    public Connection con;
+    public PreparedStatement stmt;
+    public ResultSet rs;
     
     /**
      * Constructor 
@@ -42,7 +44,7 @@ public class ConnectDatabase {
      * Hàm kết nối đến cơ sở dữ liệu
      * Thông báo kết nối thất bại nếu có exception 
      */
-    private void getConnect(){
+    public void getConnect(){
         try {
             Class.forName(JDBC_DRIVER);
             con = DriverManager.getConnection(DB_URL, username, password);
@@ -65,7 +67,7 @@ public class ConnectDatabase {
      * @param sql
      * @return giá trị có kiểu là ResultSet 
      */
-    private ResultSet query(String sql){
+    /*private ResultSet query(String sql){
         ResultSet rs = null;
         stmt = null;
         this.getConnect();
@@ -76,5 +78,5 @@ public class ConnectDatabase {
             System.out.println("query error: " + e.toString());
         } 
         return rs;
-    }
+    }*/
 }

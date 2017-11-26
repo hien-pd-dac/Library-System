@@ -14,14 +14,17 @@ import java.awt.event.ActionListener;
  *
  * @author Ronaldo Hanh
  */
-public class CardManageController implements BaseController{
+public class CardManageController implements BaseController {
 
     private CardManageView cardManageView;
-    
-    public CardManageController(){
+
+    public CardManageController() {
         this.cardManageView = new CardManageView();
         cardManageView.addButtonBackToMenuLibrarianListener(new LibrarianManageListener());
+        cardManageView.addButtonIssueCardListener(new CardIssueListener());
+        cardManageView.addButtonSearchCardListener(new CardSearchListener());
     }
+
     @Override
     public void hideGUI() {
         cardManageView.setVisible(false);
@@ -31,13 +34,29 @@ public class CardManageController implements BaseController{
     public void showGUI() {
         cardManageView.setVisible(true);
     }
-    
-    class LibrarianManageListener implements ActionListener{
+
+    class LibrarianManageListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
             MainController.redirect_to(CardManageController.class, LibrarianManageController.class);
         }
-        
+
+    }
+
+    class CardIssueListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            MainController.redirect_to(CardManageController.class, CardIssueController.class);
+        }
+    }
+
+    class CardSearchListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            MainController.redirect_to(CardManageController.class, CardSearchController.class);
+        }
     }
 }

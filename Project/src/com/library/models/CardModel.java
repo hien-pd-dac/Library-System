@@ -5,10 +5,158 @@
  */
 package com.library.models;
 
+import com.library.helpers.ConnectDatabase;
+import com.library.helpers.Session;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import javax.swing.JOptionPane;
+
 /**
  *
- * @author hpd
+ * @author hnv Model card
+ * @attribute userCode
+ * @attribute expiredDate;
+ * @attribute activationCode
+ * @method getter and setter
  */
 public class CardModel {
+
+    private String userCode;
+    private Date expiredDate;
+    private String activationCode;
+
+    public String getUserCode() {
+        return userCode;
+    }
+
+    public void setUserCode(String userCode) {
+        this.userCode = userCode;
+    }
+
+    public Date getExpiredDate() {
+        return expiredDate;
+    }
+
+    public void setExpiredDate(Date expiredDate) {
+        this.expiredDate = expiredDate;
+    }
+
+    public String getActivationCode() {
+        return activationCode;
+    }
+
+    public void setActivationCode(String activationCode) {
+        this.activationCode = activationCode;
+    }
+
+    public boolean validateInfo() {
+        if (Session.get("userIDIssueCard") == null) {
+            JOptionPane.showMessageDialog(null, "Bạn chưa nhập mã người vay.");
+            return false;
+        } else {
+            if (Session.get("activationCode") == null) {
+                JOptionPane.showMessageDialog(null, "Bạn chưa nhập mã kích hoạt.");
+                return false;
+            } else {
+                if (validateExpireDay() < 0) {
+                    JOptionPane.showMessageDialog(null, "Ngày hết hạn phải lớn hơn ngày hiện tại.");
+                    return false;
+                }
+                return true;
+            }
+        }
+    }
+
+    public void insertToDB() {
+        ConnectDatabase connect = new ConnectDatabase("tdd", "root", "");
+        connect.getConnect();
+        String checkExistUser = "SELECT * from borrower where UserID = ?";
+        try {
+            connect.stmt = connect.con.prepareStatement(checkExistUser);
+            connect.stmt.setInt(1, Integer.parseInt(Session.get("userIDIssueCard")));
+            connect.rs = connect.stmt.executeQuery();
+            if (connect.rs.next()) {
+                if(checkExisted(connect) == true){
+                    insert(connect);
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Người vay đã có thẻ.");
+                }
+                
+            } else {
+                JOptionPane.showMessageDialog(null, "Không tồn tại người vay.");
+            }
+        } catch (Exception e) {
+        }
+    }
+
+    private void insert(ConnectDatabase connect) {
+        Connection con1 = connect.con;
+        PreparedStatement stmt1;
+        ResultSet rs1;
+        String insertNewCard = "INSERT into card(`UserID`, `Activation Code`, `Expired Date`) values (?, ?, ?)";
+        try {
+            stmt1 = con1.prepareStatement(insertNewCard);
+            stmt1.setInt(1, Integer.parseInt(Session.get("userIDIssueCard")));
+            stmt1.setString(2, Session.get("activationCode"));
+            String lastCrawlDate = Session.get("expiredDate");
+            Date utilDate = new SimpleDateFormat("yyyy-MM-dd").parse(lastCrawlDate);
+            java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+            stmt1.setDate(3, sqlDate);
+            stmt1.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Tạo thẻ thành công!");
+        } catch (Exception e) {
+        }
+    }
     
+    private boolean checkExisted(ConnectDatabase connect){
+        int kt = 0;
+        Connection con1 = connect.con;
+        PreparedStatement stmt1;
+        ResultSet rs1;
+        String sql = "Select count(`UserID`) from card where UserID = ?";
+        try {
+            stmt1 = con1.prepareStatement(sql);
+            stmt1.setInt(1, Integer.parseInt(Session.get("userIDIssueCard")));
+            rs1 = stmt1.executeQuery();
+            if(rs1.next()){
+                kt = rs1.getInt(1);
+            }
+        } catch (Exception e) {
+        }
+        if(kt > 1 ){
+            return false;
+        }
+        return true;
+    }
+
+    private int validateExpireDay() {
+        int year = Calendar.getInstance().get(Calendar.YEAR);
+        int month = Calendar.getInstance().get(Calendar.MONTH) + 1;
+        int date = Calendar.getInstance().get(Calendar.DATE);
+
+        if (Integer.parseInt(Session.get("year")) > year) {
+            return 1;
+        } else if (Integer.parseInt(Session.get("year")) == year) {
+            if (Integer.parseInt(Session.get("month")) > month) {
+                return 1;
+            } else if (Integer.parseInt(Session.get("month")) < month) {
+                return -1;
+            } else {
+                if (Integer.parseInt(Session.get("date")) > date) {
+                    return 1;
+                } else {
+                    return -1;
+                }
+            }
+        } else if (Integer.parseInt(Session.get("year")) < year) {
+            return -1;
+        }
+        return -1;
+    }
+
 }
