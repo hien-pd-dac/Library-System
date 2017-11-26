@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.library.helpers;
+package com.library.test.hien;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -16,13 +16,13 @@ import java.sql.Statement;
  * @author Ronaldo Hanh
  * Class kết nối databse 
  */
-public class ConnectDatabase {
+public class TestConnect {
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
     private String DB_URL = "jdbc:mysql://localhost:3306/";
-    private final String dbName;
-    private final String username;
-    private final String password;
-    private Connection con;
+    private String dbName;
+    private String username;
+    private String password;
+    private Connection connection;
     private Statement stmt;
     
     /**
@@ -31,7 +31,7 @@ public class ConnectDatabase {
      * @param username là tên người dùng, thường là "root"
      * @param password là mật khẩu, thường là ""
      */
-    public ConnectDatabase(String dbName, String username, String password){
+    public TestConnect(String dbName, String username, String password){
         this.dbName = dbName;
         this.username = username;
         this.password = password;
@@ -45,36 +45,40 @@ public class ConnectDatabase {
     private void getConnect(){
         try {
             Class.forName(JDBC_DRIVER);
-            con = DriverManager.getConnection(DB_URL, username, password);
+            connection = DriverManager.getConnection(DB_URL, username, password);
             System.out.println("Connect success!");
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println("Ket noi that bai");
         }
     }
     
-    /**
-     * Hàn thực hiện câu truy vấn
-     * Hướng dấn dùng:
-        ResultSet rs = connect.query(sql);
+    private void showData(ResultSet rs) {
         try {
-            while(rs.next()){ //rs.next() sẽ duyệt các kết quả cho đến khi không còn kết quả nào
-                System.out.println(rs.getString("Name")); //hàm rs.getString nhận đầu vào là tên cột hoặc số thứ tự côt, trả ra dữ liệu của cột đó.
+            while (rs.next()) {
+                System.out.printf("%10s %10s %10s\n", rs.getString(1), rs.getString(2), rs.getString(3));
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
+            System.out.println("show false!");
         }
-     * @param sql
-     * @return giá trị có kiểu là ResultSet 
-     */
-    private ResultSet query(String sql){
+    }
+    
+    private ResultSet query (String sqlCommand) {
         ResultSet rs = null;
         stmt = null;
-        this.getConnect();
         try {
-           this.stmt = this.con.createStatement();
-           rs = stmt.executeQuery(sql);
+            stmt = connection.createStatement();
+            rs = stmt.executeQuery(sqlCommand);
         } catch (SQLException e) {
-            System.out.println("query error: " + e.toString());
-        } 
+            System.out.println("error" + e.toString());
+        }
         return rs;
+    }
+    
+    
+    
+    public static void main(String[] args) {
+        TestConnect conn = new TestConnect("db_itss", "root", "");
+        conn.getConnect();
+        conn.showData(conn.query("select * from user"));
     }
 }
