@@ -5,6 +5,8 @@
  */
 package com.library.views.librarians;
 
+import java.awt.Dimension;
+
 /**
  *
  * @author Ronaldo Hanh
@@ -18,6 +20,7 @@ public class CardUpdateView extends javax.swing.JFrame {
     public CardUpdateView() {
         initComponents();
         this.setLocationRelativeTo(null);
+         this.setPreferredSize(new Dimension(800, 500));
         setExperiedDay();
     }
 
@@ -44,6 +47,7 @@ public class CardUpdateView extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(800, 500));
 
         jPanel3.setBackground(new java.awt.Color(204, 204, 204));
 

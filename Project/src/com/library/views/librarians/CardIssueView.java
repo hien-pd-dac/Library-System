@@ -5,6 +5,9 @@
  */
 package com.library.views.librarians;
 
+import java.awt.Dimension;
+import java.awt.event.ActionListener;
+
 /**
  *
  * @author Ronaldo Hanh
@@ -18,6 +21,7 @@ public class CardIssueView extends javax.swing.JFrame {
     public CardIssueView() {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.setPreferredSize(new Dimension(800, 500));
         setExperiedDay();
     }
 
@@ -53,7 +57,7 @@ public class CardIssueView extends javax.swing.JFrame {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Phát hành thẻ mới");
 
-        jLabel8.setText("Tên người vay");
+        jLabel8.setText("Mã người vay");
 
         tfUserName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -211,6 +215,10 @@ public class CardIssueView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnPhatHanhTheActionPerformed
 
+    public void addButtonIssueCardListener(ActionListener listener){
+        //System.out.println("11111111111");
+        btnPhatHanhThe.addActionListener(listener);
+    }
     /**
      * Function chèn dữ liệu ngày, tháng, năm vào trong combobox
      */
@@ -226,6 +234,27 @@ public class CardIssueView extends javax.swing.JFrame {
             cbbYear.addItem(i);
         }
     }
+    
+    public String getUserID(){
+        return tfUserName.getText();
+    }
+    
+    public int getDay(){
+        return Integer.parseInt(cbbDay.getSelectedItem().toString());
+    }
+    
+    public int getMonth(){
+        return Integer.parseInt(cbbMonth.getSelectedItem().toString());
+    }
+     
+    public int getYear(){
+        return Integer.parseInt(cbbYear.getSelectedItem().toString());
+    }
+    
+    public String getActivationCode(){
+        return tfMaKichHoat.getText();
+    }
+      
     /**
      * @param args the command line arguments
      */
