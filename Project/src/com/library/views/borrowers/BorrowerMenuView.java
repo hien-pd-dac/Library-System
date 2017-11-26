@@ -44,7 +44,7 @@ public class BorrowerMenuView extends javax.swing.JFrame {
         logOutBtn = new javax.swing.JButton();
 
         headerPanel.setBackground(new java.awt.Color(23, 240, 206));
-        headerPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(30, 30, 30, 30));
+        headerPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         hustLabel.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
         hustLabel.setText("HUST LIBRARY SYSTEM");

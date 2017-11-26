@@ -42,7 +42,7 @@ public class BookCartView extends javax.swing.JFrame {
         contentPanel = new javax.swing.JPanel();
 
         headerPanel.setBackground(new java.awt.Color(23, 240, 203));
-        headerPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(30, 30, 30, 30));
+        headerPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         hustLabel.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
         hustLabel.setText("HUST LIBRARY SYSTEM");
@@ -66,7 +66,7 @@ public class BookCartView extends javax.swing.JFrame {
         backPanel.add(backBtn, java.awt.BorderLayout.LINE_START);
         contentPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(30, 30, 30, 30));
         
-        underPanel.add(backPanel, java.awt.BorderLayout.NORTH);
+        underPanel.add(backPanel, java.awt.BorderLayout.PAGE_START);
         underPanel.add(contentPanel, java.awt.BorderLayout.CENTER);
 
         getContentPane().add(underPanel, java.awt.BorderLayout.CENTER);

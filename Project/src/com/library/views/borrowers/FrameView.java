@@ -41,7 +41,7 @@ public class FrameView extends javax.swing.JFrame {
         contentPanel = new javax.swing.JPanel();
 
         headerPanel.setBackground(new java.awt.Color(23, 240, 203));
-        headerPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(30, 30, 30, 30));
+        headerPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         hustLabel.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
         hustLabel.setText("HUST LIBRARY SYSTEM");
