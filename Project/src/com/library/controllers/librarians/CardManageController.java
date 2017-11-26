@@ -11,13 +11,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- *
+ * Class CardManageController điều khiển CardManageView
  * @author Ronaldo Hanh
  */
 public class CardManageController implements BaseController {
 
     private CardManageView cardManageView;
 
+    /**
+     * Hàm khởi tạo
+     */
     public CardManageController() {
         this.cardManageView = new CardManageView();
         cardManageView.addButtonBackToMenuLibrarianListener(new LibrarianManageListener());
@@ -35,6 +38,9 @@ public class CardManageController implements BaseController {
         cardManageView.setVisible(true);
     }
 
+    /**
+     * Lớp LibrarianManageListener lắng nghe sự kiện khi click vào button quay lại
+     */
     class LibrarianManageListener implements ActionListener {
 
         @Override
@@ -43,7 +49,9 @@ public class CardManageController implements BaseController {
         }
 
     }
-
+    /**
+     * Lớp CardIssueListener lắng nghe sự kiện khi click vào button phát hành thẻ
+     */
     class CardIssueListener implements ActionListener {
 
         @Override
@@ -52,6 +60,9 @@ public class CardManageController implements BaseController {
         }
     }
 
+    /**
+     * Lớp CardSearchListener lắng nghe sự kiện khi click vào button Tìm kiếm thẻ
+     */
     class CardSearchListener implements ActionListener {
 
         @Override

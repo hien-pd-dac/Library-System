@@ -23,6 +23,9 @@ public class CardIssueController implements BaseController {
     private CardIssueView cardIssueView;
     private CardModel card;
 
+    /**
+     * Hàm khởi tạo 
+     */
     public CardIssueController() {
         card = new CardModel();
         cardIssueView = new CardIssueView();
@@ -41,6 +44,9 @@ public class CardIssueController implements BaseController {
         cardIssueView.setVisible(true);
     }
 
+    /**
+     * Class CardIssueListener lắng nghe sự kiên khi click vào button phát hành thẻ
+     */
     class CardIssueListener implements ActionListener {
 
         @Override
@@ -52,6 +58,9 @@ public class CardIssueController implements BaseController {
             removeSession();
         }
 
+        /**
+         * Function saveInfoToSession lưu dữ liệu nhận được từ view vào Sesion
+         */
         private void saveInfoToSession() {
             String date = cardIssueView.getYear() + "-" + cardIssueView.getMonth() + "-" + cardIssueView.getDay();
             Session.add("userIDIssueCard", cardIssueView.getUserID());
@@ -64,6 +73,11 @@ public class CardIssueController implements BaseController {
             //System.out.println("userID: " + Session.get("userID")+ "activationCode: " + Session.get("activationCode")+ "expriedDate: "+ Session.get("expiredDate"));
         }
 
+        /**
+         * Funtion checkInfo validate thông tin đã nhập
+         * @return true nếu thông tin đã nhập validate
+         * @return false nếu thông tin đã nhập not validate
+         */
         private int checkInfo() {
             if (card.validateInfo() == true) {
                 System.out.println("Du lieu validate OK");
@@ -74,11 +88,17 @@ public class CardIssueController implements BaseController {
             }
         }
 
+        /**
+         * Function removeSession xóa dữ liệu ở Session khi không dùng nữa
+         */
         private void removeSession() {
             Session.destroy();
         }
     }
 
+    /**
+     * Class CardIssueReturnListener lắng nghe sự kiện khi click vào button quay lại
+     */
     class CardIssueReturnListener implements ActionListener {
 
         @Override
