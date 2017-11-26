@@ -52,7 +52,11 @@ public class CardModel {
     public void setActivationCode(String activationCode) {
         this.activationCode = activationCode;
     }
-
+    /**
+     * Functon validateInfo() validate thông tin trong Session
+     * @return true nếu validate
+     * @return  false nếu not validate
+     */
     public boolean validateInfo() {
         if (Session.get("userIDIssueCard") == null) {
             JOptionPane.showMessageDialog(null, "Bạn chưa nhập mã người vay.");
@@ -70,7 +74,10 @@ public class CardModel {
             }
         }
     }
-
+    
+    /**
+     * Function insertToDB() chèn dữ liệu vào database 
+     */
     public void insertToDB() {
         ConnectDatabase connect = new ConnectDatabase("tdd", "root", "");
         connect.getConnect();
@@ -80,7 +87,7 @@ public class CardModel {
             connect.stmt.setInt(1, Integer.parseInt(Session.get("userIDIssueCard")));
             connect.rs = connect.stmt.executeQuery();
             if (connect.rs.next()) {
-                if(checkExisted(connect) == true){
+                if(checkExisted(connect) == false){
                     insert(connect);
                 }
                 else{
@@ -93,7 +100,10 @@ public class CardModel {
         } catch (Exception e) {
         }
     }
-
+    /**
+     * Function insert() chèn dữ liệu vào DB khi đã đủ điều kiện insert 
+     * @param connect 
+     */
     private void insert(ConnectDatabase connect) {
         Connection con1 = connect.con;
         PreparedStatement stmt1;
@@ -112,7 +122,13 @@ public class CardModel {
         } catch (Exception e) {
         }
     }
-    
+
+    /**
+     * Function checkExisted() kiểm tra UserID đã có thẻ vay hay chưa
+     * @param connect
+     * @return true nếu có thẻ vay
+     * @return false nếu chưa có thẻ vay
+     */
     private boolean checkExisted(ConnectDatabase connect){
         int kt = 0;
         Connection con1 = connect.con;
@@ -129,11 +145,16 @@ public class CardModel {
         } catch (Exception e) {
         }
         if(kt > 1 ){
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 
+    /**
+     * Functiin validateExpireDay kiểm tra ngày hết hạn
+     * @return 1 nếu ngày hết hạn > ngày hiện tại
+     * @return  -1 nếu ngày hết hạn <= ngày hiện tại 
+     */
     private int validateExpireDay() {
         int year = Calendar.getInstance().get(Calendar.YEAR);
         int month = Calendar.getInstance().get(Calendar.MONTH) + 1;

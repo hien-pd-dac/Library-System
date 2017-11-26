@@ -237,7 +237,7 @@ public class CardIssueView extends javax.swing.JFrame {
         for(i = 1; i <= 12; i++){
             cbbMonth.addItem(i);
         }
-        for(i = 1900; i <= 2100; i++){
+        for(i = 2010; i <= 2100; i++){
             cbbYear.addItem(i);
         }
     }
