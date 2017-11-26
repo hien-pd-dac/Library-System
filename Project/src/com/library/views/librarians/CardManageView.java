@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.library.views;
+package com.library.views.librarians;
 
 import java.awt.event.ActionListener;
 
