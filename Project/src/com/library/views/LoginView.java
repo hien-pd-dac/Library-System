@@ -3,13 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.library.views.borrowers;
+package com.library.views;
 
 import javax.swing.*;
 import java.awt.*;
 
 import static com.library.utils.Utils.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.border.EmptyBorder;
 /**
@@ -18,6 +17,21 @@ import javax.swing.border.EmptyBorder;
  */
 public class LoginView extends JFrame {
 
+    // Variables declaration - do not modify                     
+    private JPanel contentPanel;
+    private JPanel headerPanel;
+    private JLabel hustLabel;
+    private JPanel underPanel;
+
+    // LOGIN 
+    private JTextField usernameField;
+    private JPasswordField passwordField;
+    private JLabel loginL;
+    private JLabel usernameL;
+    private JLabel passwordL;
+    private JButton submitBtn;
+    private JLabel notiL;
+    // End of variables declaration  
     /**
      * Creates new form LoginView
      */
@@ -136,6 +150,7 @@ public class LoginView extends JFrame {
     /**
      * @param args the command line arguments
      */
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -165,20 +180,18 @@ public class LoginView extends JFrame {
             new LoginView().setVisible(true);
         });
     }
-
-    // Variables declaration - do not modify                     
-    private JPanel contentPanel;
-    private JPanel headerPanel;
-    private JLabel hustLabel;
-    private JPanel underPanel;
-
-    // LOGIN 
-    private JTextField usernameField;
-    private JPasswordField passwordField;
-    private JLabel loginL;
-    private JLabel usernameL;
-    private JLabel passwordL;
-    private JButton submitBtn;
-    private JLabel notiL;
-    // End of variables declaration                   
+    
+    public void addLoginViewAction (ActionListener act) {
+        submitBtn.addActionListener(act);
+        submitBtn.setActionCommand(LOGIN_BTN);
+    }
+    
+    public String getUsernameField () {
+        return usernameField.getText();
+    }
+    
+    public String getPasswordField () {
+        return (new String(passwordField.getPassword()));
+    }
+                     
 }

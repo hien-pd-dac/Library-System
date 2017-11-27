@@ -19,6 +19,8 @@ public class Utils {
     public static final int HEADER_HEIGHT = 70;
     public static final int CONTENT_HEIGHT = 400;
     public static final int CONTENT_WIDTH = 700;
+    
+    public static final String LOGIN_BTN = "login_btn";
 
     public static void debug(Class clz,String debug){
         if (true){

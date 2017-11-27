@@ -9,6 +9,6 @@ package com.library.models;
  *
  * @author hpd
  */
-public class BookeModel {
+public class BookModel {
     
 }

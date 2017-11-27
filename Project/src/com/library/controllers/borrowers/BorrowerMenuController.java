@@ -5,10 +5,35 @@
  */
 package com.library.controllers.borrowers;
 
+import com.library.controllers.BaseController;
+import com.library.views.borrowers.*;
+
 /**
  *
  * @author hpd
  */
-public class BorrowerMenuController {
+public class BorrowerMenuController implements BaseController {
+    private BorrowerMenuView borrowerMenuView;
     
+    
+    public BorrowerMenuController () {
+        borrowerMenuView = new BorrowerMenuView();
+        
+    }
+    
+//    public static void main(String[] args) {
+//        BorrowerMenuController borrowerMenuController = new BorrowerMenuController();
+//        borrowerMenuController.borrowerMenuView.setVisible(true);
+//    }
+//    
+
+    @Override
+    public void hideGUI() {
+        borrowerMenuView.setVisible(false);
+    }
+
+    @Override
+    public void showGUI() {
+        borrowerMenuView.setVisible(true);
+    }
 }
