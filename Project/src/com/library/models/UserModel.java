@@ -29,10 +29,10 @@ public class UserModel {
      * 
      * @param username
      * @param password
-     * @return true if success, false if false
+     * @return -1 if false, 0 if admin, 2 borrower, 1 if librarian
      * @throws java.sql.SQLException
      */
-    public static boolean isLoginSuccess(String username, String password) throws SQLException {
+    public static int login(String username, String password) throws SQLException {
         String sqlCommand = "SELECT COUNT(*) as cot from user WHERE username = ? and password = ?";
         ResultSet rs = null;
         PreparedStatement pst = null;
@@ -43,14 +43,22 @@ public class UserModel {
             rs = pst.executeQuery();
         } catch (SQLException e) {
             System.out.println("error userIsExist!");
-            return false;
+            return -1;
         }
         rs.next();
-        return rs.getInt("cot") == 1;
+        if(rs.getInt("cot") == 0) return -1;
+        else {
+            String sqlCommand1 = "SELECT role from user where username = ?";
+            pst = ConnectDatabase.con.prepareStatement(sqlCommand1);
+            pst.setString(1, username);
+            rs = pst.executeQuery();
+            rs.next();
+            return rs.getInt("role");
+        }
     }
     
     public static void main(String[] args) throws SQLException {
-            System.out.println(UserModel.isLoginSuccess("1234567c", "123456"));
+            System.out.println(UserModel.login("1234567c", "123456"));
         
     }
     

@@ -6,6 +6,7 @@
 package com.library.controllers;
 
 import com.library.controllers.borrowers.BorrowerMenuController;
+import com.library.controllers.librarians.LibrarianManageController;
 import com.library.helpers.Session;
 import com.library.models.UserModel;
 import static com.library.utils.Utils.LOGIN_BTN;
@@ -47,14 +48,19 @@ public class LoginController implements BaseController {
         public void actionPerformed(ActionEvent e) {
             if (e.getActionCommand().equals(LOGIN_BTN)) {
                 if (isInvalidInput()) {
-                    System.out.println("invalid!");
+                    JOptionPane.showMessageDialog(null, "Không bỏ trống các trường!");
                 } else {
                     try {
                         String username = loginView.getUsernameField();
                         String password = loginView.getPasswordField();
-                        if(UserModel.isLoginSuccess(username, password)) {
-                            setSessionUser();
-                            MainController.redirect_to(LoginController.class, BorrowerMenuController.class);
+                        int checkRole = UserModel.login(username, password);
+                        if(checkRole != -1) {
+                            setSessionUser(username, password, checkRole);
+                            if (checkRole == 1) {
+                                MainController.redirect_to(LoginController.class, LibrarianManageController.class);
+                            } else if (checkRole == 2) {
+                                MainController.redirect_to(LoginController.class, BorrowerMenuController.class);
+                            }
                         } else {
                             JOptionPane.showMessageDialog(null, "Username hoặc mật khẩu không đúng!", 
                                     "Login false", JOptionPane.ERROR_MESSAGE);
@@ -72,9 +78,10 @@ public class LoginController implements BaseController {
                     || loginView.getPasswordField().equals(""));
         }
 
-        private void setSessionUser() {
-            Session.add("username", loginView.getUsernameField());
-            Session.add("password", loginView.getPasswordField());
+        private void setSessionUser(String username, String password, int role) {
+            Session.add("username", username);
+            Session.add("password", password);
+            Session.add("role", Integer.toString(role));
         }
     }
 }

@@ -5,14 +5,20 @@
  */
 package com.library;
 
+import com.library.controllers.LoginController;
+import com.library.controllers.MainController;
+
 /**
  *
  * @author hpd
  */
 public class Main {
+
+    /**
+     *
+     * @param args
+     */
     public static void main(String[] args) {
-        System.out.println("Hello my team!");
-        return;
+        MainController.redirect_to(null, LoginController.class);
     }
-    
 }
