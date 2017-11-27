@@ -14,6 +14,7 @@ public class Utils {
     /**
      *
      */
+    
     public static final int WINDOW_WIDTH = 900;
     public static final int WINDOW_HEIGHT = 600;
     public static final int HEADER_HEIGHT = 70;

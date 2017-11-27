@@ -5,6 +5,7 @@
  */
 package com.library.test.hien;
 
+import com.library.helpers.ConnectDatabase;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -31,6 +32,9 @@ public class TestConnect {
      * @param username là tên người dùng, thường là "root"
      * @param password là mật khẩu, thường là ""
      */
+    public TestConnect() {
+        
+    }
     public TestConnect(String dbName, String username, String password){
         this.dbName = dbName;
         this.username = username;
@@ -66,7 +70,7 @@ public class TestConnect {
         ResultSet rs = null;
         stmt = null;
         try {
-            stmt = connection.createStatement();
+            stmt = ConnectDatabase.con.createStatement();
             rs = stmt.executeQuery(sqlCommand);
         } catch (SQLException e) {
             System.out.println("error" + e.toString());
@@ -77,8 +81,8 @@ public class TestConnect {
     
     
     public static void main(String[] args) {
-        TestConnect conn = new TestConnect("db_itss", "root", "");
-        conn.getConnect();
-        conn.showData(conn.query("select * from user"));
+        TestConnect tc = new TestConnect();
+        tc.showData(tc.query("select * from user"));
+        
     }
 }
