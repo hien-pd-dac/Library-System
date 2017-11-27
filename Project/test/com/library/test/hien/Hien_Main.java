@@ -13,6 +13,11 @@ import com.library.controllers.MainController;
  * @author hpd
  */
 public class Hien_Main {
+
+    /**
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         MainController.redirect_to(null, LoginController.class);
     }

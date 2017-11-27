@@ -30,7 +30,6 @@ public class LoginView extends JFrame {
     private JLabel usernameL;
     private JLabel passwordL;
     private JButton submitBtn;
-    private JLabel notiL;
     // End of variables declaration  
     /**
      * Creates new form LoginView
@@ -83,9 +82,6 @@ public class LoginView extends JFrame {
         passwordL = new JLabel("Password:", JLabel.LEFT);
         passwordL.setFont(new Font("Ubuntu", Font.PLAIN, 15));
         
-        notiL = new JLabel("noti");
-        notiL.setVisible(true);
-        notiL.setFont(new Font("Ubuntu", Font.PLAIN, 15));
         submitBtn = new JButton("Login");
         
         contentPanel = new JPanel(new FlowLayout());  // khung chua content
@@ -120,16 +116,10 @@ public class LoginView extends JFrame {
         gbc.gridy = 1;
         panel.add(passwordField, gbc);
         
-        gbc.anchor = GridBagConstraints.CENTER;
         gbc.gridx = 0;
         gbc.gridy = 2;
         gbc.gridwidth = 2;
-        gbc.fill = GridBagConstraints.CENTER;
-        panel.add(notiL, gbc);
-        
-        gbc.gridx = 0;
-        gbc.gridy = 3;
-        gbc.gridwidth = 2;
+        gbc.anchor = GridBagConstraints.CENTER;
         gbc.fill = GridBagConstraints.CENTER;
         panel.add(submitBtn, gbc);
         panel.setBackground(Color.decode("#D8D8D8"));

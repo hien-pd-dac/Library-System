@@ -7,10 +7,15 @@ package com.library.controllers;
 
 import com.library.controllers.borrowers.BorrowerMenuController;
 import com.library.helpers.Session;
+import com.library.models.UserModel;
 import static com.library.utils.Utils.LOGIN_BTN;
 import com.library.views.LoginView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -44,8 +49,20 @@ public class LoginController implements BaseController {
                 if (isInvalidInput()) {
                     System.out.println("invalid!");
                 } else {
-//                    setSessionUser();
-                    MainController.redirect_to(LoginController.class, BorrowerMenuController.class);
+                    try {
+                        String username = loginView.getUsernameField();
+                        String password = loginView.getPasswordField();
+                        if(UserModel.isLoginSuccess(username, password)) {
+                            setSessionUser();
+                            MainController.redirect_to(LoginController.class, BorrowerMenuController.class);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Username hoặc mật khẩu không đúng!", 
+                                    "Login false", JOptionPane.ERROR_MESSAGE);
+                            System.out.println("login false!");
+                        }
+                    } catch (SQLException ex) {
+                        Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
             }
         }
