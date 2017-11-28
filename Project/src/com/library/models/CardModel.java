@@ -65,7 +65,12 @@ public class CardModel {
             if (Session.get("activationCode") == null) {
                 JOptionPane.showMessageDialog(null, "Bạn chưa nhập mã kích hoạt.");
                 return false;
-            } else {
+            }
+            else if(Session.get("activationCode").length() < 6){
+                JOptionPane.showMessageDialog(null, "Mã kích hoạt phải có tối thiểu 6 kí tự!");
+                return false;
+            }
+            else {
                 if (validateExpireDay() < 0) {
                     JOptionPane.showMessageDialog(null, "Ngày hết hạn phải lớn hơn ngày hiện tại.");
                     return false;
@@ -79,16 +84,16 @@ public class CardModel {
      * Function insertToDB() chèn dữ liệu vào database 
      */
     public void insertToDB() {
-        ConnectDatabase connect = new ConnectDatabase("tdd", "root", "");
-        connect.getConnect();
+        //ConnectDatabase connect = new ConnectDatabase("tdd", "root", "");
+        ConnectDatabase.getConnect();
         String checkExistUser = "SELECT * from borrower where UserID = ?";
         try {
-            connect.stmt = connect.con.prepareStatement(checkExistUser);
-            connect.stmt.setInt(1, Integer.parseInt(Session.get("userIDIssueCard")));
-            connect.rs = connect.stmt.executeQuery();
-            if (connect.rs.next()) {
-                if(checkExisted(connect) == false){
-                    insert(connect);
+            ConnectDatabase.pst = ConnectDatabase.con.prepareStatement(checkExistUser);
+            ConnectDatabase.pst.setInt(1, Integer.parseInt(Session.get("userIDIssueCard")));
+            ConnectDatabase.rs = ConnectDatabase.pst.executeQuery();
+            if (ConnectDatabase.rs.next()) {
+                if(checkExisted() == false){
+                    insert();
                 }
                 else{
                     JOptionPane.showMessageDialog(null, "Người vay đã có thẻ.");
@@ -101,11 +106,10 @@ public class CardModel {
         }
     }
     /**
-     * Function insert() chèn dữ liệu vào DB khi đã đủ điều kiện insert 
-     * @param connect 
+     * Function insert() chèn dữ liệu vào DB khi đã đủ điều kiện insert  
      */
-    private void insert(ConnectDatabase connect) {
-        Connection con1 = connect.con;
+    private void insert() {
+        Connection con1 = ConnectDatabase.con;
         PreparedStatement stmt1;
         ResultSet rs1;
         String insertNewCard = "INSERT into card(`UserID`, `Activation Code`, `Expired Date`) values (?, ?, ?)";
@@ -125,13 +129,12 @@ public class CardModel {
 
     /**
      * Function checkExisted() kiểm tra UserID đã có thẻ vay hay chưa
-     * @param connect
      * @return true nếu có thẻ vay
      * @return false nếu chưa có thẻ vay
      */
-    private boolean checkExisted(ConnectDatabase connect){
+    private boolean checkExisted(){
         int kt = 0;
-        Connection con1 = connect.con;
+        Connection con1 = ConnectDatabase.con;
         PreparedStatement stmt1;
         ResultSet rs1;
         String sql = "Select count(`UserID`) from card where UserID = ?";
@@ -144,7 +147,7 @@ public class CardModel {
             }
         } catch (Exception e) {
         }
-        if(kt > 1 ){
+        if(kt >= 1 ){
             return true;
         }
         return false;
