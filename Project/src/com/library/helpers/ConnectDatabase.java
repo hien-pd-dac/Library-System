@@ -28,13 +28,7 @@ public class ConnectDatabase {
     public static Connection con = getConnect();
     public static PreparedStatement pst;
     public static ResultSet rs;
-    
-    /**
-     * Constructor 
-     * @param dbName là tên daatabase 
-     * @param username là tên người dùng, thường là "root"
-     * @param password là mật khẩu, thường là ""
-     */
+
     /**
      * Hàm kết nối đến cơ sở dữ liệu
      * Thông báo kết nối thất bại nếu có exception 
