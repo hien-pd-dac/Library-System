@@ -9,7 +9,7 @@ import com.library.views.librarians.LibrarianManageView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 /**
- *
+ * Controller quản lý các chức năng của thủ thư
  * @author Ronaldo Hanh
  */
 public class LibrarianManageController implements BaseController {
@@ -29,6 +29,9 @@ public class LibrarianManageController implements BaseController {
         cardManageView.setVisible(true);
     }
     
+    /**
+     * Lớp lắng nghe sự kiện khi click vào button quản lí thẻ
+     */
     class CardManageListener implements ActionListener{
 
         @Override

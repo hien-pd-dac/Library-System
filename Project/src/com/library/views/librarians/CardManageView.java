@@ -7,9 +7,10 @@ package com.library.views.librarians;
 
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 
 /**
- *
+ * Card Manage View
  * @author Ronaldo Hanh
  */
 public class CardManageView extends javax.swing.JFrame {
@@ -80,11 +81,24 @@ public class CardManageView extends javax.swing.JFrame {
                 btnCardIssueActionPerformed(evt);
             }
         });
+        btnCardIssue.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnCardIssueKeyPressed(evt);
+            }
+        });
 
         btnCardSearch.setText("Tìm kiếm thẻ");
         btnCardSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCardSearchActionPerformed(evt);
+            }
+        });
+        btnCardSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnCardSearchKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                btnCardSearchKeyReleased(evt);
             }
         });
 
@@ -144,9 +158,8 @@ public class CardManageView extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnBackToMenuLibrarian, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(2, 2, 2)))
-                .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(71, Short.MAX_VALUE))
+                .addContainerGap(89, Short.MAX_VALUE))
         );
 
         pack();
@@ -174,6 +187,23 @@ public class CardManageView extends javax.swing.JFrame {
     private void btnBackToMenuLibrarianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackToMenuLibrarianActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBackToMenuLibrarianActionPerformed
+
+    private void btnCardIssueKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnCardIssueKeyPressed
+  
+        if(evt.getKeyCode() == KeyEvent.VK_DOWN){
+            btnCardSearch.requestFocus();
+        }
+    }//GEN-LAST:event_btnCardIssueKeyPressed
+
+    private void btnCardSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnCardSearchKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCardSearchKeyReleased
+
+    private void btnCardSearchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnCardSearchKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_DOWN || evt.getKeyCode() == KeyEvent.VK_UP){
+            btnCardIssue.requestFocus();
+        }
+    }//GEN-LAST:event_btnCardSearchKeyPressed
 
     /**
      * @param args the command line arguments
