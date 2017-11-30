@@ -7,7 +7,10 @@ package com.library.views.borrowers;
 
 import static com.library.utils.Utils.WINDOW_HEIGHT;
 import static com.library.utils.Utils.WINDOW_WIDTH;
+import java.awt.Component;
+import java.awt.PopupMenu;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author hpd
@@ -88,9 +91,12 @@ public class ListBookView extends javax.swing.JFrame {
         underPanel.add(searchPanel, java.awt.BorderLayout.PAGE_START);
 
         contentPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(30, 30, 30, 30));
+//        bookTable = new JTable();
+        contentPanel.add(new JScrollPane(bookTable));
+        
         underPanel.add(contentPanel, java.awt.BorderLayout.CENTER);
-
-        getContentPane().add(underPanel, java.awt.BorderLayout.CENTER);
+        underPanel.add(createBtnPane());
+        this.add(underPanel, java.awt.BorderLayout.CENTER);
 
         this.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         this.setLocationRelativeTo(null);
@@ -98,6 +104,13 @@ public class ListBookView extends javax.swing.JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }// </editor-fold>                                                              
 
+    public void setTable(JTable contentTable) {
+        this.bookTable = contentTable;
+    }
+
+    private JPanel createBtnPane() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     /**
      * @param args the command line arguments
      */
@@ -144,5 +157,9 @@ public class ListBookView extends javax.swing.JFrame {
     private javax.swing.JButton searchBtn;
     private javax.swing.JTextField searchInput;
     
+    private javax.swing.JTable bookTable;
+    
     // End of variables declaration                   
+
+    
 }
