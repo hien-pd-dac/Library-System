@@ -22,6 +22,17 @@ public class Utils {
     public static final int CONTENT_WIDTH = 700;
     
     public static final String LOGIN_BTN = "login_btn";
+    public static final String BACK_BTN = "backBtn";
+    public static final String SEARCH_BTN = "searchBtn";
+    public static final String ADD_TO_CART_BTN = "addToCartBtn";
+    public static final String SEARCH_BOOK_BTN = "searchBookBtn";
+    public static final String BOOK_CART_BTN = "bookCartBtn";
+    public static final String BORROWED_HISTORY_BTN = "borrowedHistoryBtn";
+    public static final String ACCOUNT_BTN = "accountBtn";
+    public static final String LOGOUT_BTN = "logoutBtn";
+    public static final String REMOVE_BTN = "removeBtn";
+    public static final String SUBMIT_BTN = "submitBtn";
+    public static final String ADD_MORE_BTN = "addMoreBtn";
 
     public static void debug(Class clz,String debug){
         if (true){

@@ -5,10 +5,14 @@
  */
 package com.library.views.borrowers;
 
-import static com.library.utils.Utils.WINDOW_HEIGHT;
-import static com.library.utils.Utils.WINDOW_WIDTH;
+import static com.library.utils.Utils.*;
+import java.awt.Color;
 import java.awt.Component;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.PopupMenu;
+import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 /**
@@ -33,14 +37,15 @@ public class ListBookView extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
-
         headerPanel = new javax.swing.JPanel();
         hustLabel = new javax.swing.JLabel();
         underPanel = new javax.swing.JPanel();
         searchPanel = new javax.swing.JPanel();
-        contentPanel = new javax.swing.JPanel();
+        contentPanel = new javax.swing.JPanel(new GridLayout(1, 1));
+        contentPanel.setBorder(BorderFactory.createEmptyBorder(50, 50, 50, 50));
         backBtn = new javax.swing.JButton();
         searchInput = new javax.swing.JTextField();
+        searchInput.setFont(new Font("Ubuntu", Font.PLAIN, 18));
         searchBtn = new javax.swing.JButton();
         
 
@@ -60,7 +65,7 @@ public class ListBookView extends javax.swing.JFrame {
 
         backBtn.setText("Back");
 
-        searchInput.setText("input");
+        searchInput.setText("");
 
         searchBtn.setText("Search");
 
@@ -90,13 +95,11 @@ public class ListBookView extends javax.swing.JFrame {
 
         underPanel.add(searchPanel, java.awt.BorderLayout.PAGE_START);
 
-        contentPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(30, 30, 30, 30));
-//        bookTable = new JTable();
-        contentPanel.add(new JScrollPane(bookTable));
+        contentPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
         
         underPanel.add(contentPanel, java.awt.BorderLayout.CENTER);
-        underPanel.add(createBtnPane());
-        this.add(underPanel, java.awt.BorderLayout.CENTER);
+        underPanel.add(createBtnPane(), java.awt.BorderLayout.PAGE_END);
+        this.add(underPanel, java.awt.BorderLayout.PAGE_END);
 
         this.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         this.setLocationRelativeTo(null);
@@ -104,12 +107,23 @@ public class ListBookView extends javax.swing.JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }// </editor-fold>                                                              
 
+    /**
+     *
+     * @param contentTable
+     */
     public void setTable(JTable contentTable) {
-        this.bookTable = contentTable;
+        contentPanel.removeAll();
+        contentPanel.setBorder(BorderFactory.createEmptyBorder(10, 40, 20, 40));
+        contentPanel.add(new JScrollPane(contentTable));
+        contentPanel.repaint();
     }
 
     private JPanel createBtnPane() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        JPanel btnPane = new JPanel();
+        btnPane.setBorder(BorderFactory.createEmptyBorder(0, 10, 5, 10));
+        addToCartBtn = new JButton("Add to cart");
+        btnPane.add(addToCartBtn);
+        return btnPane;
     }
     /**
      * @param args the command line arguments
@@ -145,6 +159,7 @@ public class ListBookView extends javax.swing.JFrame {
             }
         });
     }
+    
 
     // Variables declaration - do not modify                     
     private javax.swing.JButton backBtn;
@@ -158,8 +173,22 @@ public class ListBookView extends javax.swing.JFrame {
     private javax.swing.JTextField searchInput;
     
     private javax.swing.JTable bookTable;
+    private javax.swing.JButton addToCartBtn;
     
-    // End of variables declaration                   
+    /**
+     *
+     * @param act
+     */
+    public void setListBookViewListerner(ActionListener act) {
+        backBtn.addActionListener(act);
+        backBtn.setActionCommand(BACK_BTN);
+        searchBtn.addActionListener(act);
+        searchBtn.setActionCommand(SEARCH_BTN);
+        addToCartBtn.addActionListener(act);
+        addToCartBtn.setActionCommand(ADD_TO_CART_BTN);
+        
+    }
+    
 
     
 }
