@@ -5,6 +5,9 @@
  */
 package com.library.views.librarians;
 
+import java.awt.Dimension;
+import java.awt.event.ActionListener;
+
 /**
  *
  * @author Ronaldo Hanh
@@ -18,6 +21,7 @@ public class CardIssueView extends javax.swing.JFrame {
     public CardIssueView() {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.setPreferredSize(new Dimension(800, 500));
         setExperiedDay();
     }
 
@@ -40,10 +44,10 @@ public class CardIssueView extends javax.swing.JFrame {
         cbbYear = new javax.swing.JComboBox();
         jLabel10 = new javax.swing.JLabel();
         tfMaKichHoat = new javax.swing.JTextField();
-        jComboBox4 = new javax.swing.JComboBox();
         btnPhatHanhThe = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
+        btnQuayLai = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -53,7 +57,7 @@ public class CardIssueView extends javax.swing.JFrame {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Phát hành thẻ mới");
 
-        jLabel8.setText("Tên người vay");
+        jLabel8.setText("Mã người vay ");
 
         tfUserName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -64,13 +68,6 @@ public class CardIssueView extends javax.swing.JFrame {
         jLabel9.setText("Ngày hết hạn");
 
         jLabel10.setText("Mã kích hoạt");
-
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Sinh viên", "Khác" }));
-        jComboBox4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox4ActionPerformed(evt);
-            }
-        });
 
         btnPhatHanhThe.setText("Phát hành thẻ");
         btnPhatHanhThe.addActionListener(new java.awt.event.ActionListener() {
@@ -93,9 +90,7 @@ public class CardIssueView extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addComponent(tfUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(59, 59, 59)
-                        .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(78, 78, 78))
+                        .addGap(205, 205, 205))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
@@ -127,8 +122,7 @@ public class CardIssueView extends javax.swing.JFrame {
                 .addGap(32, 32, 32)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(49, 49, 49)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
@@ -144,7 +138,7 @@ public class CardIssueView extends javax.swing.JFrame {
                 .addContainerGap(30, Short.MAX_VALUE))
         );
 
-        jPanel3Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {cbbDay, cbbMonth, cbbYear, jComboBox4, jLabel10, jLabel8, jLabel9, tfMaKichHoat, tfUserName});
+        jPanel3Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {cbbDay, cbbMonth, cbbYear, jLabel10, jLabel8, jLabel9, tfMaKichHoat, tfUserName});
 
         jPanel4.setBackground(new java.awt.Color(204, 204, 204));
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -173,6 +167,13 @@ public class CardIssueView extends javax.swing.JFrame {
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
+        btnQuayLai.setText("Quay lại");
+        btnQuayLai.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnQuayLaiActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -181,13 +182,19 @@ public class CardIssueView extends javax.swing.JFrame {
                 .addContainerGap(101, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(69, 69, 69))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnQuayLai, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 903, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(173, Short.MAX_VALUE)
+                .addContainerGap(117, Short.MAX_VALUE)
+                .addComponent(btnQuayLai, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -203,14 +210,22 @@ public class CardIssueView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tfUserNameActionPerformed
 
-    private void jComboBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox4ActionPerformed
-
     private void btnPhatHanhTheActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPhatHanhTheActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnPhatHanhTheActionPerformed
 
+    private void btnQuayLaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuayLaiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnQuayLaiActionPerformed
+
+    public void addButtonIssueCardListener(ActionListener listener){
+        //System.out.println("11111111111");
+        btnPhatHanhThe.addActionListener(listener);
+    }
+    
+    public void addButtonReturnListener(ActionListener listener){
+        btnQuayLai.addActionListener(listener);
+    }
     /**
      * Function chèn dữ liệu ngày, tháng, năm vào trong combobox
      */
@@ -222,10 +237,31 @@ public class CardIssueView extends javax.swing.JFrame {
         for(i = 1; i <= 12; i++){
             cbbMonth.addItem(i);
         }
-        for(i = 1900; i <= 2100; i++){
+        for(i = 2010; i <= 2100; i++){
             cbbYear.addItem(i);
         }
     }
+    
+    public String getUserID(){
+        return tfUserName.getText();
+    }
+    
+    public String getDay(){
+        return cbbDay.getSelectedItem().toString();
+    }
+    
+    public String getMonth(){
+        return cbbMonth.getSelectedItem().toString();
+    }
+     
+    public String getYear(){
+        return cbbYear.getSelectedItem().toString();
+    }
+    
+    public String getActivationCode(){
+        return tfMaKichHoat.getText();
+    }
+      
     /**
      * @param args the command line arguments
      */
@@ -263,10 +299,10 @@ public class CardIssueView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnPhatHanhThe;
+    private javax.swing.JButton btnQuayLai;
     private javax.swing.JComboBox cbbDay;
     private javax.swing.JComboBox cbbMonth;
     private javax.swing.JComboBox cbbYear;
-    private javax.swing.JComboBox jComboBox4;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;

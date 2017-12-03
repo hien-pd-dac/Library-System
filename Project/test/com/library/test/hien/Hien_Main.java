@@ -3,22 +3,27 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.library;
+package com.library.test.hien;
 
 import com.library.controllers.LoginController;
 import com.library.controllers.MainController;
+import com.library.controllers.borrowers.ListBookController;
+import com.library.helpers.ConnectDatabase;
+import com.library.models.BookModel;
 
 /**
  *
  * @author hpd
  */
-public class Main {
+public class Hien_Main {
 
     /**
      *
      * @param args
      */
     public static void main(String[] args) {
-        MainController.redirect_to(null, LoginController.class);
+//        MainController.redirect_to(null, ListBookController.class);
+//        ListBookController listBookController = new ListBookController();
+//        listBookController.showGUI();
     }
 }

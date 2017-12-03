@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.library.models;
+package com.library.controllers.librarians;
 
 /**
  *
- * @author hpd
+ * @author Ronaldo Hanh
  */
-public class BookeModel {
+public class CardSearchController {
     
 }

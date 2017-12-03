@@ -5,6 +5,8 @@
  */
 package com.library.views.librarians;
 
+import java.awt.Dimension;
+
 /**
  *
  * @author Ronaldo Hanh
@@ -18,6 +20,7 @@ public class CardUpdateView extends javax.swing.JFrame {
     public CardUpdateView() {
         initComponents();
         this.setLocationRelativeTo(null);
+         this.setPreferredSize(new Dimension(800, 500));
         setExperiedDay();
     }
 
@@ -44,6 +47,7 @@ public class CardUpdateView extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(800, 500));
 
         jPanel3.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -168,7 +172,7 @@ public class CardUpdateView extends javax.swing.JFrame {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 918, Short.MAX_VALUE))
+                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 947, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

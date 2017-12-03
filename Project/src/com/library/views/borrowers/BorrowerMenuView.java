@@ -7,6 +7,7 @@ package com.library.views.borrowers;
 
 import static com.library.utils.Utils.*;
 import java.awt.BorderLayout;
+import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 
 /**
@@ -31,7 +32,7 @@ public class BorrowerMenuView extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
-
+//        this.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         headerPanel = new javax.swing.JPanel();
         hustLabel = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -41,10 +42,10 @@ public class BorrowerMenuView extends javax.swing.JFrame {
         bookCartBtn = new javax.swing.JButton();
         borrowedHistoryBtn = new javax.swing.JButton();
         accountBtn = new javax.swing.JButton();
-        logOutBtn = new javax.swing.JButton();
+        logoutBtn = new javax.swing.JButton();
 
         headerPanel.setBackground(new java.awt.Color(23, 240, 206));
-        headerPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(30, 30, 30, 30));
+        headerPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         hustLabel.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
         hustLabel.setText("HUST LIBRARY SYSTEM");
@@ -68,8 +69,8 @@ public class BorrowerMenuView extends javax.swing.JFrame {
         accountBtn.setText("Account");
         jPanel3.add(accountBtn);
 
-        logOutBtn.setText("Log out");
-        jPanel3.add(logOutBtn);
+        logoutBtn.setText("Log out");
+        jPanel3.add(logoutBtn);
         
         jPanel2.add(jPanel3, BorderLayout.CENTER);
 
@@ -128,7 +129,26 @@ public class BorrowerMenuView extends javax.swing.JFrame {
     private javax.swing.JLabel hustLabel;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JButton logOutBtn;
+    private javax.swing.JButton logoutBtn;
     private javax.swing.JButton searchBookBtn;
-    // End of variables declaration                   
+    // End of variables declaration     
+    
+    public void setBorrowerMenuViewListener(ActionListener act) {
+        searchBookBtn.addActionListener(act);
+        searchBookBtn.setActionCommand(SEARCH_BOOK_BTN);
+        
+        bookCartBtn.addActionListener(act);
+        bookCartBtn.setActionCommand(BOOK_CART_BTN);
+        
+        borrowedHistoryBtn.addActionListener(act);
+        borrowedHistoryBtn.setActionCommand(BORROWED_HISTORY_BTN);
+        
+        accountBtn.addActionListener(act);
+        accountBtn.setActionCommand(ACCOUNT_BTN);
+        
+        logoutBtn.addActionListener(act);
+        logoutBtn.setActionCommand(LOGOUT_BTN);
+        
+        
+    }
 }

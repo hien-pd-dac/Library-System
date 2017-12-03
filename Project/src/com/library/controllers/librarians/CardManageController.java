@@ -11,17 +11,23 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- *
+ * Class CardManageController điều khiển CardManageView
  * @author Ronaldo Hanh
  */
-public class CardManageController implements BaseController{
+public class CardManageController implements BaseController {
 
     private CardManageView cardManageView;
-    
-    public CardManageController(){
+
+    /**
+     * Hàm khởi tạo
+     */
+    public CardManageController() {
         this.cardManageView = new CardManageView();
         cardManageView.addButtonBackToMenuLibrarianListener(new LibrarianManageListener());
+        cardManageView.addButtonIssueCardListener(new CardIssueListener());
+        cardManageView.addButtonSearchCardListener(new CardSearchListener());
     }
+
     @Override
     public void hideGUI() {
         cardManageView.setVisible(false);
@@ -31,13 +37,37 @@ public class CardManageController implements BaseController{
     public void showGUI() {
         cardManageView.setVisible(true);
     }
-    
-    class LibrarianManageListener implements ActionListener{
+
+    /**
+     * Lớp LibrarianManageListener lắng nghe sự kiện khi click vào button quay lại
+     */
+    class LibrarianManageListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
             MainController.redirect_to(CardManageController.class, LibrarianManageController.class);
         }
-        
+
+    }
+    /**
+     * Lớp CardIssueListener lắng nghe sự kiện khi click vào button phát hành thẻ
+     */
+    class CardIssueListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            MainController.redirect_to(CardManageController.class, CardIssueController.class);
+        }
+    }
+
+    /**
+     * Lớp CardSearchListener lắng nghe sự kiện khi click vào button Tìm kiếm thẻ
+     */
+    class CardSearchListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            MainController.redirect_to(CardManageController.class, CardSearchController.class);
+        }
     }
 }

@@ -43,6 +43,4 @@ public class MainController {
         }
         getController(target).showGUI();
     }
-    
-    
 }
