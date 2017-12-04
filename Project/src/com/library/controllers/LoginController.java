@@ -59,6 +59,7 @@ public class LoginController implements BaseController {
                             if (checkRole == 1) {
                                 MainController.redirect_to(LoginController.class, LibrarianManageController.class);
                             } else if (checkRole == 2) {
+                                
                                 MainController.redirect_to(LoginController.class, BorrowerMenuController.class);
                             }
                         } else {
@@ -82,6 +83,12 @@ public class LoginController implements BaseController {
             Session.add("username", username);
             Session.add("password", password);
             Session.add("role", Integer.toString(role));
+            int userID = UserModel.getUserID(username);
+            Session.add("userID", Integer.toString(userID));
+            if (role == 2) {
+                int cardID = UserModel.getCardID(Integer.toString(userID));
+                Session.add("cardID", Integer.toString(cardID));
+            }
         }
     }
 }

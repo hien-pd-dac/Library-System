@@ -24,17 +24,6 @@ public class BookModel {
     private String author;
     private String ISBN;
     
-    public BookModel (String[] arr) {
-        if(arr.length != 5) {
-            System.out.println("error parameter!");
-        } else {
-            bookID = arr[0];
-            title = arr[1];
-            publisher = arr[2];
-            author = arr[3];
-            ISBN = arr[4];
-        }
-    }
     public static ResultSet getAllBook() {
         String sqlCommand = "SELECT * FROM book";
         ResultSet rs = null;

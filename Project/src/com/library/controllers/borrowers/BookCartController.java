@@ -5,7 +5,9 @@
  */
 package com.library.controllers.borrowers;
 
-import com.library.models.BookModel;
+import com.library.controllers.BaseController;
+import com.library.controllers.MainController;
+import com.library.models.*;
 import static com.library.utils.Utils.*;
 import com.library.views.borrowers.BookCartView;
 import java.awt.event.ActionEvent;
@@ -20,8 +22,8 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author hpd
  */
-public class BookCartController {
-    private BookCartView bookCartView;
+public class BookCartController implements BaseController {
+    private final BookCartView bookCartView;
     
     public BookCartController() {
         bookCartView = new BookCartView();
@@ -44,9 +46,8 @@ public class BookCartController {
             }
         };
         ResultSet rs; 
-        rs = BookCart.getBookInCart();
+        rs = BookCartModel.getBookInCart();
         try {
-            
             ResultSetMetaData rsMD = rs.getMetaData();
             int colNumber = rsMD.getColumnCount();
             String[] arr = new String[colNumber];
@@ -70,6 +71,16 @@ public class BookCartController {
         
         return dataTable;
     }
+
+    @Override
+    public void hideGUI() {
+        this.bookCartView.setVisible(false);
+    }
+
+    @Override
+    public void showGUI() {
+        this.bookCartView.setVisible(true);
+    }
     
     
     private class BookCartViewAction implements ActionListener {
@@ -78,7 +89,7 @@ public class BookCartController {
         public void actionPerformed(ActionEvent e) {
             switch(e.getActionCommand()) {
                 case BACK_BTN: {
-                    
+                    MainController.redirect_to(BookCartController.class, ListBookController.class);
                 } break;
                 case REMOVE_BTN: {
                     

@@ -22,7 +22,7 @@ public class Hien_Main {
      * @param args
      */
     public static void main(String[] args) {
-//        MainController.redirect_to(null, ListBookController.class);
+        MainController.redirect_to(null, LoginController.class);
 //        ListBookController listBookController = new ListBookController();
 //        listBookController.showGUI();
     }
