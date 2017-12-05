@@ -96,7 +96,7 @@ public class BookCartView extends javax.swing.JFrame {
     public void setTable(DefaultTableModel tableModel) {
         this.contentTable.removeAll();
         this.contentTable.setModel(tableModel);
-        this.contentTable.repaint();
+//        this.contentTable.repaint();
     }
 
     /**

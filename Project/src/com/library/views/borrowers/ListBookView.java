@@ -126,7 +126,7 @@ public class ListBookView extends javax.swing.JFrame {
 //        contentPanel.repaint();
         this.contentTable.removeAll();
         this.contentTable.setModel(tableModel);
-        this.contentTable.repaint();
+//        this.contentTable.repaint();
     }
 
     private JPanel createBtnPane() {
