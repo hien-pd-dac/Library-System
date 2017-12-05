@@ -6,6 +6,7 @@
 package com.library.views.borrowers;
 
 import static com.library.utils.Utils.*;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.FlowLayout;
@@ -37,6 +38,9 @@ public class ListBookView extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
+        JPanel masterPane = new JPanel(new BorderLayout());
+        this.add(masterPane);
+        
         headerPanel = new javax.swing.JPanel();
         hustLabel = new javax.swing.JLabel();
         underPanel = new javax.swing.JPanel();
@@ -56,7 +60,7 @@ public class ListBookView extends javax.swing.JFrame {
         hustLabel.setText("HUST LIBRARY SYSTEM");
         headerPanel.add(hustLabel);
 
-        getContentPane().add(headerPanel, java.awt.BorderLayout.PAGE_START);
+        masterPane.add(headerPanel, java.awt.BorderLayout.PAGE_START);
 
         underPanel.setLayout(new java.awt.BorderLayout());
 
@@ -99,7 +103,7 @@ public class ListBookView extends javax.swing.JFrame {
         
         underPanel.add(contentPanel, java.awt.BorderLayout.CENTER);
         underPanel.add(createBtnPane(), java.awt.BorderLayout.PAGE_END);
-        this.add(underPanel, java.awt.BorderLayout.PAGE_END);
+        masterPane.add(underPanel, java.awt.BorderLayout.PAGE_END);
 
         this.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         this.setLocationRelativeTo(null);

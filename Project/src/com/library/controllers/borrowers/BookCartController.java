@@ -89,7 +89,7 @@ public class BookCartController implements BaseController {
         public void actionPerformed(ActionEvent e) {
             switch(e.getActionCommand()) {
                 case BACK_BTN: {
-                    MainController.redirect_to(BookCartController.class, ListBookController.class);
+                    MainController.redirect_to(BookCartController.class, BorrowerMenuController.class);
                 } break;
                 case REMOVE_BTN: {
                     

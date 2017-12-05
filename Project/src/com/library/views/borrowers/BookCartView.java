@@ -34,7 +34,8 @@ public class BookCartView extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
-        
+        JPanel masterPane = new JPanel(new BorderLayout());
+        this.add(masterPane);
 
         headerPanel = new javax.swing.JPanel();
         hustLabel = new javax.swing.JLabel();
@@ -50,7 +51,7 @@ public class BookCartView extends javax.swing.JFrame {
         hustLabel.setText("HUST LIBRARY SYSTEM");
         headerPanel.add(hustLabel);
 
-        getContentPane().add(headerPanel, java.awt.BorderLayout.PAGE_START);
+        masterPane.add(headerPanel, java.awt.BorderLayout.PAGE_START);
 
         underPanel.setLayout(new java.awt.BorderLayout());
 
@@ -67,7 +68,7 @@ public class BookCartView extends javax.swing.JFrame {
         underPanel.add(backPanel, java.awt.BorderLayout.PAGE_START);
         underPanel.add(contentPanel, java.awt.BorderLayout.CENTER);
         underPanel.add(createBtnPane(), java.awt.BorderLayout.PAGE_END);
-        getContentPane().add(underPanel, java.awt.BorderLayout.CENTER);
+        masterPane.add(underPanel, java.awt.BorderLayout.CENTER);
         
         this.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         this.setLocationRelativeTo(null);
