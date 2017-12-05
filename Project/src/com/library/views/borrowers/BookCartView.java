@@ -12,6 +12,7 @@ import static com.library.utils.Utils.*;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author hpd
@@ -65,6 +66,10 @@ public class BookCartView extends javax.swing.JFrame {
         backPanel.add(backBtn, java.awt.BorderLayout.LINE_START);
         contentPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(30, 30, 30, 30));
         
+        contentTable = new JTable();
+        contentPanel.setBorder(BorderFactory.createEmptyBorder(10, 40, 20, 40));
+        contentPanel.add(new JScrollPane(contentTable));
+        
         underPanel.add(backPanel, java.awt.BorderLayout.PAGE_START);
         underPanel.add(contentPanel, java.awt.BorderLayout.CENTER);
         underPanel.add(createBtnPane(), java.awt.BorderLayout.PAGE_END);
@@ -88,11 +93,10 @@ public class BookCartView extends javax.swing.JFrame {
         return btnPane;
     }
     
-    public void setTable(JTable contentTable) {
-        contentPanel.removeAll();
-        contentPanel.setBorder(BorderFactory.createEmptyBorder(10, 40, 20, 40));
-        contentPanel.add(new JScrollPane(contentTable));
-        contentPanel.repaint();
+    public void setTable(DefaultTableModel tableModel) {
+        this.contentTable.removeAll();
+        this.contentTable.setModel(tableModel);
+        this.contentTable.repaint();
     }
 
     /**

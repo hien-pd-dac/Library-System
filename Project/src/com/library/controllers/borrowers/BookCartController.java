@@ -27,15 +27,15 @@ public class BookCartController implements BaseController {
     
     public BookCartController() {
         bookCartView = new BookCartView();
-        setDataTable();
+        setTableModel();
         bookCartView.setBookCartViewListener(new BookCartViewAction());
     }
     
-    private void setDataTable() {
-        bookCartView.setTable(getDataTable());
+    private void setTableModel() {
+        bookCartView.setTable(getTableModel());
     }
     
-    private JTable getDataTable() {
+    private DefaultTableModel getTableModel() {
         JTable dataTable = new JTable();
         DefaultTableModel model;
         model = new DefaultTableModel(){
@@ -69,7 +69,7 @@ public class BookCartController implements BaseController {
         dataTable.setModel(model);
         
         
-        return dataTable;
+        return model;
     }
 
     @Override

@@ -32,10 +32,10 @@ public class ListBookController implements BaseController {
     }
     
     private void setDataTable() {
-        listBookView.setTable(getDataTable());
+        listBookView.setTable(getTableModel());
     }
     
-    private JTable getDataTable() {
+    private DefaultTableModel getTableModel() {
         JTable dataTable = new JTable();
         DefaultTableModel model;
         model = new DefaultTableModel(){
@@ -68,7 +68,8 @@ public class ListBookController implements BaseController {
         }
         dataTable.setModel(model);
         
-        return dataTable;
+//        return dataTable;
+        return model;
     }
     
     private class ListBookViewAction implements ActionListener{
