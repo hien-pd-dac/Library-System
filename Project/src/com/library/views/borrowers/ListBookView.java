@@ -117,13 +117,16 @@ public class ListBookView extends javax.swing.JFrame {
 
     /**
      *
-     * @param contentTable
+     * @param tableModel
      */
-    public void setTable(JTable contentTable) {
-        contentPanel.removeAll();
-        contentPanel.setBorder(BorderFactory.createEmptyBorder(10, 40, 20, 40));
-        contentPanel.add(new JScrollPane(contentTable));
-        contentPanel.repaint();
+    public void setTable(DefaultTableModel tableModel) {
+//        contentPanel.removeAll();
+//        contentPanel.setBorder(BorderFactory.createEmptyBorder(10, 40, 20, 40));
+//        contentPanel.add(new JScrollPane(contentTable));
+//        contentPanel.repaint();
+        this.contentTable.removeAll();
+        this.contentTable.setModel(tableModel);
+//        this.contentTable.repaint();
     }
 
     private JPanel createBtnPane() {
