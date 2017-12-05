@@ -101,6 +101,10 @@ public class ListBookView extends javax.swing.JFrame {
 
         contentPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
         
+        contentTable = new JTable();
+        contentPanel.setBorder(BorderFactory.createEmptyBorder(10, 40, 20, 40));
+        contentPanel.add(new JScrollPane(contentTable));
+        
         underPanel.add(contentPanel, java.awt.BorderLayout.CENTER);
         underPanel.add(createBtnPane(), java.awt.BorderLayout.PAGE_END);
         masterPane.add(underPanel, java.awt.BorderLayout.PAGE_END);
@@ -176,7 +180,7 @@ public class ListBookView extends javax.swing.JFrame {
     private javax.swing.JButton searchBtn;
     private javax.swing.JTextField searchInput;
     
-    private javax.swing.JTable bookTable;
+    private javax.swing.JTable contentTable;
     private javax.swing.JButton addToCartBtn;
     
     /**
