@@ -9,7 +9,7 @@ import java.awt.Dimension;
 import java.awt.event.ActionListener;
 
 /**
- *
+ * Card Issue View
  * @author Ronaldo Hanh
  */
 public class CardIssueView extends javax.swing.JFrame {
@@ -218,11 +218,19 @@ public class CardIssueView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnQuayLaiActionPerformed
 
+    /**
+     * Hàm bắt sự kiện khi click vào button phát hành thẻ
+     * @param listener 
+     */
     public void addButtonIssueCardListener(ActionListener listener){
         //System.out.println("11111111111");
         btnPhatHanhThe.addActionListener(listener);
     }
     
+    /**
+     * Hàm bắt sự kiện khi click button quay lại
+     * @param listener 
+     */
     public void addButtonReturnListener(ActionListener listener){
         btnQuayLai.addActionListener(listener);
     }
@@ -242,22 +250,42 @@ public class CardIssueView extends javax.swing.JFrame {
         }
     }
     
-    public String getUserID(){
+    /**
+     * Hàm lấy giá trị Username
+     * @return giá trị tên đăng nhập
+     */
+    public String getUserName(){
         return tfUserName.getText();
     }
     
+    /**
+     * Hàm lấy ngày hết hạn
+     * @return ngày hết hạn
+     */
     public String getDay(){
         return cbbDay.getSelectedItem().toString();
     }
     
+    /**
+     * Hàm lấy tháng hệt hạn
+     * @return tháng hết hạn
+     */
     public String getMonth(){
         return cbbMonth.getSelectedItem().toString();
     }
      
+    /**
+     * Hàm lấy năm hết hạn
+     * @return năm hết hạn
+     */
     public String getYear(){
         return cbbYear.getSelectedItem().toString();
     }
     
+    /**
+     * Hàm lấy mã kích hoạt
+     * @return mã kích hoạt
+     */
     public String getActivationCode(){
         return tfMaKichHoat.getText();
     }
