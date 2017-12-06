@@ -9,6 +9,8 @@ import java.awt.BorderLayout;
 import javax.swing.*;
 
 import static com.library.utils.Utils.*;
+import java.awt.GridLayout;
+import java.awt.event.ActionListener;
 import javax.swing.border.EmptyBorder;
 /**
  *
@@ -39,7 +41,7 @@ public class BookCartView extends javax.swing.JFrame {
         underPanel = new javax.swing.JPanel();
         backPanel = new javax.swing.JPanel();
         backBtn = new javax.swing.JButton();
-        contentPanel = new javax.swing.JPanel();
+        contentPanel = new javax.swing.JPanel(new GridLayout(1, 1));
 
         headerPanel.setBackground(new java.awt.Color(23, 240, 203));
         headerPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -56,11 +58,7 @@ public class BookCartView extends javax.swing.JFrame {
         backPanel.setPreferredSize(new java.awt.Dimension(800, 50));
 
         backBtn.setText("Back");
-        backBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backBtnActionPerformed(evt);
-            }
-        });
+       
         backPanel.setLayout(new BorderLayout());
         backPanel.setBorder(new EmptyBorder(5, 10, 5, 10));
         backPanel.add(backBtn, java.awt.BorderLayout.LINE_START);
@@ -68,19 +66,33 @@ public class BookCartView extends javax.swing.JFrame {
         
         underPanel.add(backPanel, java.awt.BorderLayout.PAGE_START);
         underPanel.add(contentPanel, java.awt.BorderLayout.CENTER);
-
+        underPanel.add(createBtnPane(), java.awt.BorderLayout.PAGE_END);
         getContentPane().add(underPanel, java.awt.BorderLayout.CENTER);
-
         
         this.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    }// </editor-fold>                        
-
-    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {                                        
-        // TODO add your handling code here:
-    }                                       
+    }// </editor-fold>        
+    
+    private JPanel createBtnPane() {
+        JPanel btnPane = new JPanel(new GridLayout(1, 3, 50, 50));
+        btnPane.setBorder(BorderFactory.createEmptyBorder(20, 200, 10, 200));
+        removeBtn = new JButton(REMOVE_BTN);
+        submitBtn = new JButton(SUBMIT_BTN);
+        addMoreBtn = new JButton(ADD_MORE_BTN);
+        btnPane.add(removeBtn);
+        btnPane.add(submitBtn);
+        btnPane.add(addMoreBtn);
+        return btnPane;
+    }
+    
+    public void setTable(JTable contentTable) {
+        contentPanel.removeAll();
+        contentPanel.setBorder(BorderFactory.createEmptyBorder(10, 40, 20, 40));
+        contentPanel.add(new JScrollPane(contentTable));
+        contentPanel.repaint();
+    }
 
     /**
      * @param args the command line arguments
@@ -124,5 +136,22 @@ public class BookCartView extends javax.swing.JFrame {
     private javax.swing.JLabel hustLabel;
     private javax.swing.JPanel backPanel;
     private javax.swing.JPanel underPanel;
-    // End of variables declaration                   
+    // content table
+    private JTable contentTable;
+    //btnPanel
+    private JButton removeBtn;
+    private JButton submitBtn;
+    private JButton addMoreBtn;
+    // End of variables declaration        
+    
+    public void setBookCartViewListener(ActionListener act) {
+        backBtn.addActionListener(act);
+        backBtn.setActionCommand(BACK_BTN);
+        removeBtn.addActionListener(act);
+        removeBtn.setActionCommand(REMOVE_BTN);
+        submitBtn.addActionListener(act);
+        submitBtn.setActionCommand(SUBMIT_BTN);
+        addMoreBtn.addActionListener(act);
+        addMoreBtn.setActionCommand(ADD_MORE_BTN);
+    }
 }

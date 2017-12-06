@@ -98,11 +98,12 @@ public class CardModel {
      */
     class CardInsert {
 
-        public CardInsert(){
-            if(validateInfo(Session.get("date"), Session.get("month"), Session.get("year")) == true){
+        public CardInsert() {
+            if (validateInfo(Session.get("date"), Session.get("month"), Session.get("year")) == true) {
                 insertToDB();
             }
         }
+
         /**
          * Function insertToDB() kiểm tra dữ liệu trước khi chèn dữ liệu vào
          * database
@@ -119,14 +120,17 @@ public class CardModel {
                     if (checkExisted() == false) {
                         insert();
                     } else {
+                        Session.add("resultTestIssue", "0");
                         JOptionPane.showMessageDialog(null, "Người vay đã có thẻ.");
                     }
 
                 } else {
+                     Session.add("resultTestIssue", "0");
                     JOptionPane.showMessageDialog(null, "Không tồn tại người vay.");
                 }
             } catch (Exception e) {
-                 JOptionPane.showMessageDialog(null, "Không tồn tại người vay.");
+                 Session.add("resultTestIssue", "0");
+                JOptionPane.showMessageDialog(null, "Không tồn tại người vay.");
             }
         }
 
@@ -146,9 +150,10 @@ public class CardModel {
                 Date utilDate = new SimpleDateFormat("yyyy-MM-dd").parse(lastCrawlDate);
                 java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
                 stmt1.setDate(3, sqlDate);
-                
+
                 stmt1.executeUpdate();
                 System.out.println("Da den cho insert ");
+                 Session.add("resultTestIssue", "1");
                 JOptionPane.showMessageDialog(null, "Tạo thẻ thành công!");
             } catch (Exception e) {
             }
@@ -189,17 +194,21 @@ public class CardModel {
          */
         public boolean validateInfo(String day, String month, String year) {
             if (Session.get("userIDIssueCard") == null) {
+                 Session.add("resultTestIssue", "0");
                 JOptionPane.showMessageDialog(null, "Bạn chưa nhập mã người vay.");
                 return false;
             } else {
                 if (Session.get("activationCode") == null) {
+                     Session.add("resultTestIssue", "0");
                     JOptionPane.showMessageDialog(null, "Bạn chưa nhập mã kích hoạt.");
                     return false;
                 } else if (Session.get("activationCode").length() < 6) {
+                     Session.add("resultTestIssue", "0");
                     JOptionPane.showMessageDialog(null, "Mã kích hoạt phải có tối thiểu 6 kí tự!");
                     return false;
                 } else {
                     if (validateExpireDay(day, month, year) < 0) {
+                         Session.add("resultTestIssue", "0");
                         JOptionPane.showMessageDialog(null, "Ngày hết hạn phải lớn hơn ngày hiện tại.");
                         return false;
                     }
@@ -323,7 +332,7 @@ public class CardModel {
                     JOptionPane.showMessageDialog(null, "Không tồn tại mã số thẻ!");
                 }
             } catch (Exception e) {
-                 JOptionPane.showMessageDialog(null, "Không tồn tại mã số thẻ!");
+                JOptionPane.showMessageDialog(null, "Không tồn tại mã số thẻ!");
             }
             return data;
         }
@@ -425,7 +434,7 @@ public class CardModel {
                     JOptionPane.showMessageDialog(null, "Không tồn tại thẻ!");
                 }
             } catch (Exception e) {
-                 JOptionPane.showMessageDialog(null, "Không tồn tại thẻ!");
+                JOptionPane.showMessageDialog(null, "Không tồn tại thẻ!");
             }
             return data;
         }

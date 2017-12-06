@@ -22,7 +22,6 @@ public class CardUpdateController implements BaseController{
 
     private CardUpdateView view;
     private CardModel card;
-    
     /**
      * Hàm khởi tạo 
      */
@@ -83,7 +82,6 @@ public class CardUpdateController implements BaseController{
         @Override
         public void actionPerformed(ActionEvent e) {
             MainController.redirect_to(CardUpdateController.class, CardDetailController.class);
-        }
-        
+        }       
     }
 }

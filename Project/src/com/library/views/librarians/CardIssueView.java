@@ -7,6 +7,8 @@ package com.library.views.librarians;
 
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
+import javax.swing.JComboBox;
+import javax.swing.JTextField;
 
 /**
  * Card Issue View
@@ -289,7 +291,47 @@ public class CardIssueView extends javax.swing.JFrame {
     public String getActivationCode(){
         return tfMaKichHoat.getText();
     }
-      
+    
+    /**
+     * Hàm trả về Text Field UserName
+     * @return JTextField tfUserName
+     */
+    public JTextField getUserNametf(){
+        return tfUserName;
+    }
+    
+    /**
+     * Hàm trả về TextField Activation Code
+     * @return JTextField tfActivationCode
+    */
+    public JTextField getActivationCodetf(){
+        return this.tfMaKichHoat;
+    }
+    
+    /**
+     * Hàm trả về JCombobox Day
+     * @return JCombobox cbbDay
+     */
+    public JComboBox getDaycbb(){
+        return this.cbbDay;
+    }
+    
+    /**
+     * Hàm trả về JCombobox Month
+     * @return JCombobox cbbMonth
+     */
+    public JComboBox getMonthcbb(){
+        return this.cbbMonth;
+    }
+    
+    /**
+     * Hàm trả về JCombobox Year
+     * @return JCombobox cbbYear
+     */
+    public JComboBox getYearcbb(){
+        return this.cbbYear;
+    }
+    
     /**
      * @param args the command line arguments
      */

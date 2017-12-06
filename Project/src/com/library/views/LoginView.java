@@ -47,7 +47,7 @@ public class LoginView extends JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
         
-
+        
         headerPanel = new JPanel();
         hustLabel = new JLabel();
         underPanel = new JPanel();
