@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JLabel;
 
 /**
- *
+ * Card Detail View
  * @author Ronaldo Hanh
  */
 public class CardDetailView extends javax.swing.JFrame {
@@ -223,26 +223,50 @@ public class CardDetailView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCapNhatTTTheActionPerformed
 
+    /**
+     * Hàm lấy CardId 
+     * @return JLabel CardID
+     */
     public JLabel getCardID(){
         return this.lbMaSoThe;
     }
     
+    /**
+     * Hàm lấy ngày hết hạn
+     * @return JLabel ngày hết hạn
+     */
     public JLabel getExpiredDay(){
         return this.lbNgayHetHan;
     }
     
+    /**
+     * Hàm lấy tên người mượn
+     * @return  JLabel tên người mượn
+     */
     public JLabel getFullName(){
         return this.lbTenNguoiMuon;
     }
     
+    /**
+     * Hàm lấy tên đăng nhập
+     * @return JLable tên đăng nhập
+     */
     public JLabel getUserName(){
         return this.lbTenTaiKhoan;
     }
     
+    /**
+     * Hàm lấy số điện thoại
+     * @return Jlable số điện thoại
+     */
     public JLabel getPhone(){
         return this.lbSoDienThoai;
     }
     
+    /**
+     * Hàm lấy vai trò người mượn
+     * @return JLable vai trò người mượn
+     */
     public JLabel getRole(){
         return this.lbRole;
     }

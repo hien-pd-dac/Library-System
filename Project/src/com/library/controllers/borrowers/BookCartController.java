@@ -43,8 +43,8 @@ public class BookCartController {
                 return false;//This causes all cells to be not editable
             }
         };
-        ResultSet rs; 
-        rs = BookCart.getBookInCart();
+        ResultSet rs = null; 
+        //rs = BookCart.getBookInCart();
         try {
             
             ResultSetMetaData rsMD = rs.getMetaData();

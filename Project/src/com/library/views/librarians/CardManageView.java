@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
 /**
- *
+ * Card Manage View
  * @author Ronaldo Hanh
  */
 public class CardManageView extends javax.swing.JFrame {

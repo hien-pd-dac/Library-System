@@ -13,7 +13,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 /**
- *
+ * Card Search View
  * @author Ronaldo Hanh
  */
 public class CardSearchView extends javax.swing.JFrame {
@@ -238,7 +238,7 @@ public class CardSearchView extends javax.swing.JFrame {
     
     /**
      * Function getCardID()
-     * @return cardID
+     * @return String cardID
      */
     public String getCardID(){
         return this.tfCardID.getText();
@@ -246,7 +246,7 @@ public class CardSearchView extends javax.swing.JFrame {
     
     /**
      * Function getUserName()
-     * @return userName 
+     * @return String userName 
      */
     public String getUserName(){
         return this.tfUserName.getText();
@@ -254,7 +254,7 @@ public class CardSearchView extends javax.swing.JFrame {
     
     /**
      * Function getFullName()
-     * @return fullName of borrower
+     * @return String fullName of borrower
      */
     public String getFullName(){
         return this.tfFullName.getText();
