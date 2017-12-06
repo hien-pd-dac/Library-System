@@ -32,7 +32,9 @@ public class BookCartController implements BaseController {
     }
     
     private void setTableModel() {
-        bookCartView.setTable(getTableModel());
+        DefaultTableModel tableModel = getTableModel();
+        if(tableModel != null)
+            bookCartView.setTable(getTableModel());
     }
     
     private DefaultTableModel getTableModel() {
@@ -47,6 +49,7 @@ public class BookCartController implements BaseController {
         };
         ResultSet rs; 
         rs = BookCartModel.getBookInCart();
+        if(rs == null) return null;
         try {
             ResultSetMetaData rsMD = rs.getMetaData();
             int colNumber = rsMD.getColumnCount();

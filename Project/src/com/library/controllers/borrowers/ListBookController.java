@@ -85,6 +85,11 @@ public class ListBookController implements BaseController {
                 } break;
                 case ADD_TO_CART_BTN: {
                     // TODO HIEN
+                    int row = listBookView.getSelectedRow();
+                    if(row == -1) {
+                        JOptionPane.showMessageDialog(null, "Select a book to add to bookcart!", 
+                                    "Error", JOptionPane.ERROR_MESSAGE);
+                    }
                     
                 } break;
                 default: break;
@@ -103,5 +108,7 @@ public class ListBookController implements BaseController {
     public void showGUI() {
         listBookView.setVisible(true);
     }
-    
+    public static void main(String[] args) {
+        MainController.redirect_to(null, ListBookController.class);
+    }
 }

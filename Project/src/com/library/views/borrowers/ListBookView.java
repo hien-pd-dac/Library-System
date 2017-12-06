@@ -136,6 +136,14 @@ public class ListBookView extends javax.swing.JFrame {
         btnPane.add(addToCartBtn);
         return btnPane;
     }
+    
+    /**
+     * 
+     * @return -1 if not selected
+     */
+    public int getSelectedRow() {
+        return contentTable.getSelectedRow();
+    }
     /**
      * @param args the command line arguments
      */

@@ -29,6 +29,9 @@ public class BookCartModel {
             pst.setString(1, Session.get("cardID"));
             System.out.println(Session.get("cardID"));
             rs = pst.executeQuery();
+            if(!rs.next()) {
+                return null;
+            }
         } catch (SQLException e) {
             System.out.println("error userIsExist!");
             return null;
