@@ -24,7 +24,7 @@ public class CardIssueController implements BaseController {
     private CardModel card;
 
     /**
-     * Hàm khởi tạo 
+     * Hàm khởi tạo
      */
     public CardIssueController() {
         card = new CardModel();
@@ -45,16 +45,15 @@ public class CardIssueController implements BaseController {
     }
 
     /**
-     * Class CardIssueListener lắng nghe sự kiên khi click vào button phát hành thẻ
+     * Class CardIssueListener lắng nghe sự kiên khi click vào button phát hành
+     * thẻ
      */
     class CardIssueListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
             saveInfoToSession();
-            if (checkInfo() == 1) {
-                card.insertToDB();
-            }
+            card.insert();
             removeSession();
         }
 
@@ -69,25 +68,22 @@ public class CardIssueController implements BaseController {
             Session.add("year", cardIssueView.getYear());
             Session.add("month", cardIssueView.getMonth());
             Session.add("date", cardIssueView.getDay());
-            //JOptionPane.showMessageDialog(null, "userID: " + Session.get("userIDIssueCard")+ "activationCode: " + Session.get("activationCode")+ "expriedDate: "+ Session.get("expiredDate"));
-            //System.out.println("userID: " + Session.get("userID")+ "activationCode: " + Session.get("activationCode")+ "expriedDate: "+ Session.get("expiredDate"));
         }
 
-        /**
-         * Funtion checkInfo validate thông tin đã nhập
-         * @return true nếu thông tin đã nhập validate
-         * @return false nếu thông tin đã nhập not validate
-         */
-        private int checkInfo() {
-            if (card.validateInfo() == true) {
-                System.out.println("Du lieu validate OK");
-                return 1;
-            } else {
-                System.out.println("Du lieu validate Fail");
-                return 0;
-            }
-        }
-
+//        /**
+//         * Funtion checkInfo validate thông tin đã nhập
+//         * @return true nếu thông tin đã nhập validate
+//         * @return false nếu thông tin đã nhập not validate
+//         */
+//        private int checkInfo() {
+//            if (card.validateInfo(Session.get("date"), Session.get("month"), Session.get("year")) == true) {
+//                System.out.println("Du lieu validate OK");
+//                return 1;
+//            } else {
+//                System.out.println("Du lieu validate Fail");
+//                return 0;
+//            }
+//        }
         /**
          * Function removeSession xóa dữ liệu ở Session khi không dùng nữa
          */
@@ -97,7 +93,8 @@ public class CardIssueController implements BaseController {
     }
 
     /**
-     * Class CardIssueReturnListener lắng nghe sự kiện khi click vào button quay lại
+     * Class CardIssueReturnListener lắng nghe sự kiện khi click vào button quay
+     * lại
      */
     class CardIssueReturnListener implements ActionListener {
 
