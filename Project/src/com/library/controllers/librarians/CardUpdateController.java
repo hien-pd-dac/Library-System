@@ -22,7 +22,6 @@ public class CardUpdateController implements BaseController{
 
     private CardUpdateView view;
     private CardModel card;
-    
     /**
      * Hàm khởi tạo 
      */
@@ -42,6 +41,7 @@ public class CardUpdateController implements BaseController{
       view.setVisible(true);
     }
     
+
     /**
      * Lớp lắng nghe sự kiện khi click vào button cập nhật thông tin thẻ
      */
@@ -58,6 +58,7 @@ public class CardUpdateController implements BaseController{
            }
         }
         
+
         /**
          * Hàm kiểm tra ngày hết hạn có hợp lệ hay không
          * @return 1 nếu ngày hết hạn > ngày hiện tại

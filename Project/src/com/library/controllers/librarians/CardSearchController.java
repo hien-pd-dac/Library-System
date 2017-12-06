@@ -46,19 +46,17 @@ public class CardSearchController implements BaseController {
         clearTable(view.getTableResult());
         view.setVisible(false);
         //view.getPane().setVisible(false);
-        
     }
 
     @Override
     public void showGUI() {
         view.setVisible(true);
         view.getPane().setVisible(true);
-        
-
     }
 
     /**
      * Hàm clear bảng sau khi thực hiện tìm kiếm
+     *
      * @param table
      */
     public void clearTable(JTable table) {
@@ -132,7 +130,6 @@ public class CardSearchController implements BaseController {
                         view.getTableResult().setEnabled(false);
                     }
                 }
-
             } else {
                 JOptionPane.showMessageDialog(null, "Bạn phải nhập ít nhất 1 trong 3 trường dữ liệu!");
             }
@@ -211,7 +208,6 @@ public class CardSearchController implements BaseController {
         public void actionPerformed(ActionEvent e) {
             MainController.redirect_to(CardSearchController.class, CardManageController.class);
         }
-
     }
 
     /**
@@ -227,8 +223,6 @@ public class CardSearchController implements BaseController {
                 System.out.println("ID clicked: " + id);
                 Session.add("IDClicked", id);
                 MainController.redirect_to(CardSearchController.class, CardDetailController.class);
-                //System.out.println("ID clicked: " + id);
-
             }
         }
 
@@ -248,9 +242,6 @@ public class CardSearchController implements BaseController {
 
         @Override
         public void mouseExited(MouseEvent e) {
-
         }
-
     }
-
 }
