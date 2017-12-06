@@ -122,18 +122,20 @@ public class ListBookView extends javax.swing.JFrame {
     public void setTable(DefaultTableModel tableModel) {
 //        contentPanel.removeAll();
 //        contentPanel.setBorder(BorderFactory.createEmptyBorder(10, 40, 20, 40));
-//        contentPanel.add(new JScrollPane(contentTable));
 //        contentPanel.repaint();
         this.contentTable.removeAll();
         this.contentTable.setModel(tableModel);
-//        this.contentTable.repaint();
+        this.contentTable.repaint();
     }
 
     private JPanel createBtnPane() {
         JPanel btnPane = new JPanel();
-        btnPane.setBorder(BorderFactory.createEmptyBorder(0, 10, 5, 10));
+        btnPane.setBorder(BorderFactory.createEmptyBorder(0, 300, 5, 300));
+        btnPane.setLayout(new GridLayout(1, 2, 10, 10));
         addToCartBtn = new JButton("Add to cart");
         btnPane.add(addToCartBtn);
+        bookCartBtn = new JButton("Book Cart");
+        btnPane.add(bookCartBtn);
         return btnPane;
     }
     
@@ -143,6 +145,12 @@ public class ListBookView extends javax.swing.JFrame {
      */
     public int getSelectedRow() {
         return contentTable.getSelectedRow();
+    }
+    
+    public String getSelectedBookID(int row) {
+        if(row == -1) return null;
+        String result = contentTable.getModel().getValueAt(row, 0).toString();
+        return result;
     }
     /**
      * @param args the command line arguments
@@ -193,6 +201,8 @@ public class ListBookView extends javax.swing.JFrame {
     
     private javax.swing.JTable contentTable;
     private javax.swing.JButton addToCartBtn;
+    private javax.swing.JButton bookCartBtn;
+    
     
     /**
      *
@@ -205,6 +215,8 @@ public class ListBookView extends javax.swing.JFrame {
         searchBtn.setActionCommand(SEARCH_BTN);
         addToCartBtn.addActionListener(act);
         addToCartBtn.setActionCommand(ADD_TO_CART_BTN);
+        bookCartBtn.addActionListener(act);
+        bookCartBtn.setActionCommand(BOOK_CART_BTN);
         
     }
     

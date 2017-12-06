@@ -13,6 +13,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 /**
  *
  * @author hpd
@@ -22,11 +23,12 @@ public class BookCartView extends javax.swing.JFrame {
     /**
      * Creates new form BookCartView
      */
+    
     public BookCartView() {
         initComponents();
         this.setTitle("BookCartView");
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -95,8 +97,22 @@ public class BookCartView extends javax.swing.JFrame {
     
     public void setTable(DefaultTableModel tableModel) {
         this.contentTable.removeAll();
-        this.contentTable.setModel(tableModel);
-//        this.contentTable.repaint();
+        this.contentTable.setModel((TableModel)tableModel);
+        this.contentTable.repaint();
+    }
+    
+    public int getSelectedRow() {
+        return contentTable.getSelectedRow();
+    }
+    
+    public String getSelectedCopyID(int row) {
+        if(row == -1) return null;
+        String result = contentTable.getModel().getValueAt(row, 0).toString();
+        return result;
+    }
+    
+    public DefaultTableModel getTableModel() {
+        return (DefaultTableModel) contentTable.getModel();
     }
 
     /**
@@ -159,4 +175,6 @@ public class BookCartView extends javax.swing.JFrame {
         addMoreBtn.addActionListener(act);
         addMoreBtn.setActionCommand(ADD_MORE_BTN);
     }
+
+    
 }

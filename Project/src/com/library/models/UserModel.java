@@ -39,6 +39,7 @@ public class UserModel {
         ResultSet rs;
         PreparedStatement pst;
         try {
+//            ConnectDatabase.getConnect();
             pst = ConnectDatabase.con.prepareStatement(sqlCommand);
             pst.setString(1, username);
             pst.setString(2, password);
@@ -64,6 +65,7 @@ public class UserModel {
         ResultSet rs;
         PreparedStatement pst;
         try {
+//            ConnectDatabase.getConnect();
             pst = ConnectDatabase.con.prepareStatement(sqlCommand);
             pst.setString(1, username);
             rs = pst.executeQuery();
@@ -84,6 +86,7 @@ public class UserModel {
         ResultSet rs;
         PreparedStatement pst;
         try {
+//            ConnectDatabase.getConnect();
             pst = ConnectDatabase.con.prepareStatement(sqlCommand);
             pst.setString(1, userID);
             rs = pst.executeQuery();
