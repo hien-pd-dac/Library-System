@@ -125,13 +125,16 @@ public class CardModel {
                     if (checkExisted() == false) {
                         insert();
                     } else {
+                        Session.add("resultTestIssue", "0");
                         JOptionPane.showMessageDialog(null, "Người vay đã có thẻ.");
                     }
 
                 } else {
+                     Session.add("resultTestIssue", "0");
                     JOptionPane.showMessageDialog(null, "Không tồn tại người vay.");
                 }
             } catch (Exception e) {
+                 Session.add("resultTestIssue", "0");
                 JOptionPane.showMessageDialog(null, "Không tồn tại người vay.");
             }
         }
@@ -155,6 +158,7 @@ public class CardModel {
 
                 stmt1.executeUpdate();
                 System.out.println("Da den cho insert ");
+                 Session.add("resultTestIssue", "1");
                 JOptionPane.showMessageDialog(null, "Tạo thẻ thành công!");
             } catch (Exception e) {
             }
@@ -195,17 +199,21 @@ public class CardModel {
          */
         public boolean validateInfo(String day, String month, String year) {
             if (Session.get("userIDIssueCard") == null) {
+                 Session.add("resultTestIssue", "0");
                 JOptionPane.showMessageDialog(null, "Bạn chưa nhập mã người vay.");
                 return false;
             } else {
                 if (Session.get("activationCode") == null) {
+                     Session.add("resultTestIssue", "0");
                     JOptionPane.showMessageDialog(null, "Bạn chưa nhập mã kích hoạt.");
                     return false;
                 } else if (Session.get("activationCode").length() < 6) {
+                     Session.add("resultTestIssue", "0");
                     JOptionPane.showMessageDialog(null, "Mã kích hoạt phải có tối thiểu 6 kí tự!");
                     return false;
                 } else {
                     if (validateExpireDay(day, month, year) < 0) {
+                         Session.add("resultTestIssue", "0");
                         JOptionPane.showMessageDialog(null, "Ngày hết hạn phải lớn hơn ngày hiện tại.");
                         return false;
                     }
