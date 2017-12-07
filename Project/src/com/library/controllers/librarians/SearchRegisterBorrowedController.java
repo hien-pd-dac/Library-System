@@ -88,7 +88,11 @@ public class SearchRegisterBorrowedController implements BaseController {
                     String cardIDSearching;
                     cardIDSearching = searchRegisterBorrowedView.getTextInput();
                     Session.remove("cardIDSearching");
-                    Session.add("cardIDSearching", cardIDSearching);
+                    if (cardIDSearching.equals("")) {
+                        Session.add("cardIDSearching", "all");
+                    } else {
+                        Session.add("cardIDSearching", cardIDSearching);
+                    }
                     setTableModel();
                 } break;
                 

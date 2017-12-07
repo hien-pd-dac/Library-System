@@ -22,13 +22,13 @@ public class Hien_Main {
      * @param args
      */
     public static void main(String[] args) {
-        Session.add("username", "hien");
-        Session.add("password", "11111111");
-        Session.add("role", "2");
-        Session.add("userID", "6");
-        Session.add("cardID", "4");
+//        Session.add("username", "hien");
+//        Session.add("password", "11111111");
+//        Session.add("role", "2");
+//        Session.add("userID", "6");
+//        Session.add("cardID", "4");
         
-        MainController.redirect_to(null,LoginController.class);
+        MainController.redirect_to(null, LoginController.class);
 
     }
 }

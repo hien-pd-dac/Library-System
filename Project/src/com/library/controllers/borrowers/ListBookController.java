@@ -31,7 +31,8 @@ public class ListBookController implements BaseController {
     private BookModel bookModel;
     
     public ListBookController () {
-        Session.add("bookIDSearching", "all");
+        if(Session.get("bookIDSearching") == null)
+            Session.add("bookIDSearching", "all");
         listBookView = new ListBookView();
         setDataTable();
         listBookView.setListBookViewListerner(new ListBookViewAction());

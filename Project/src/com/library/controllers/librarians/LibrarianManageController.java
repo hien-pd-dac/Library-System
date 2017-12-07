@@ -17,7 +17,8 @@ public class LibrarianManageController implements BaseController {
     
     public LibrarianManageController(){
         this.cardManageView = new LibrarianManageView();
-        cardManageView.addCardManageListener(new CardManageListener());  
+        cardManageView.addCardManageListener(new CardManageListener());
+        cardManageView.addBorrowedManageListener(new BorrowedManageListener());
     }
     
     @Override
@@ -27,6 +28,18 @@ public class LibrarianManageController implements BaseController {
     
     public void showGUI(){
         cardManageView.setVisible(true);
+    }
+    
+    /**
+     * Lớp lắng nghe sự kiện khi click vào button quản lí muon sach
+     */
+    private class BorrowedManageListener implements ActionListener {
+        
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            MainController.redirect_to(LibrarianManageController.class, 
+                    SearchRegisterBorrowedController.class);
+        }
     }
     
     /**

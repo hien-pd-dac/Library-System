@@ -26,6 +26,9 @@ public class BookModel {
     
     public static ResultSet getListBookResult() {
         String sqlCommand;
+        if (Session.get("bookIDSearching") == null) {
+            Session.add("bookIDSearching", "all");
+        }
         if( Session.get("bookIDSearching").equals("all")) {
             sqlCommand = "SELECT * FROM book";
         } else {

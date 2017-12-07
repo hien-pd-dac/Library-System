@@ -150,6 +150,15 @@ public class LibrarianManageView extends javax.swing.JFrame {
     public void addCardManageListener(ActionListener listener){
         btnQuanLiThe.addActionListener(listener);
     }
+    
+    /**
+     * Hàm bắt sự kiện khi click button quản lí sach
+     * @param listener 
+     */
+    public void addBorrowedManageListener(ActionListener listener){
+        btnQuanLiMuonSach.addActionListener(listener);
+    }
+    
     /**
      * @param args the command line arguments
      */
