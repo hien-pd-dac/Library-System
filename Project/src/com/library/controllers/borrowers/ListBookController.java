@@ -31,6 +31,7 @@ public class ListBookController implements BaseController {
     private BookModel bookModel;
     
     public ListBookController () {
+        Session.add("bookIDSearching", "all");
         listBookView = new ListBookView();
         setDataTable();
         listBookView.setListBookViewListerner(new ListBookViewAction());
@@ -41,7 +42,6 @@ public class ListBookController implements BaseController {
     }
     
     private DefaultTableModel getTableModel() {
-        JTable dataTable = new JTable();
         DefaultTableModel model;
         model = new DefaultTableModel(){
             @Override
@@ -51,7 +51,8 @@ public class ListBookController implements BaseController {
             }
         };
         ResultSet rs; 
-        rs = BookModel.getAllBook();
+        rs = BookModel.getListBookResult();
+        if(rs == null) return new DefaultTableModel();
         try {
             ResultSetMetaData rsMD = rs.getMetaData();
             int colNumber = rsMD.getColumnCount();
@@ -71,8 +72,6 @@ public class ListBookController implements BaseController {
         } catch (SQLException e) {
             
         }
-        dataTable.setModel(model);
-        
 //        return dataTable;
         return model;
     }
@@ -87,6 +86,16 @@ public class ListBookController implements BaseController {
                 } break;
                 case SEARCH_BTN: {
                     // VIET HUNG TODO
+                    String bookIDSearching = listBookView.getTextInput();
+                    if (bookIDSearching.equals("")) {
+                        Session.remove("bookIDSearching");
+                        Session.add("bookIDSearching", "all");
+                    } else {
+                        Session.remove("bookIDSearching");
+                        Session.add("bookIDSearching", bookIDSearching);
+                    }
+                    setDataTable();
+                    
                 } break;
                 case ADD_TO_CART_BTN: {
                     // TODO HIEN

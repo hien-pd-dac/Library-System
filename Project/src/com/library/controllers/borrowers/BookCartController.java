@@ -135,11 +135,12 @@ public class BookCartController implements BaseController {
                             Utils.debug("deleting (cardID, copyID) : " + Session.get("cardID") +" - "+ copyID);
                             int removeResult = BookCartModel.removeFromCart(Session.get("cardID"), copyID);
                             Utils.debug("removeResult: " + removeResult);
+                            setTableModel();
                             if (removeResult > 0){
                                 JOptionPane.showMessageDialog(null, "Remove from cart successfully!", 
                                         "Success", JOptionPane.DEFAULT_OPTION);
                             }
-                            setTableModel();
+                            
                         }
                     }
                     

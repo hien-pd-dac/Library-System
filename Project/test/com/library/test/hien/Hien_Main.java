@@ -7,6 +7,7 @@ package com.library.test.hien;
 
 import com.library.controllers.*;
 import com.library.controllers.borrowers.BorrowerMenuController;
+import com.library.controllers.librarians.SearchRegisterBorrowedController;
 import com.library.helpers.Session;
 import com.library.models.*;
 
@@ -27,8 +28,7 @@ public class Hien_Main {
         Session.add("userID", "6");
         Session.add("cardID", "4");
         
-        MainController.redirect_to(null, BorrowerMenuController.class);
-//        ListBookController listBookController = new ListBookController();
-//        listBookController.showGUI();
+        MainController.redirect_to(null,LoginController.class);
+
     }
 }

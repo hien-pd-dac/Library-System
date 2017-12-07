@@ -10,6 +10,7 @@ package com.library.controllers.librarians;
  * @author hpd
  */
 import com.library.controllers.BaseController;
+import com.library.controllers.LoginController;
 import com.library.controllers.MainController;
 import com.library.helpers.Session;
 import com.library.models.*;
@@ -84,7 +85,16 @@ public class SearchRegisterBorrowedController implements BaseController {
         public void actionPerformed(ActionEvent e) {
             switch(e.getActionCommand()) {
                 case SEARCH_BTN: {
-                    Utils.debug(SEARCH_BTN);
+                    String cardIDSearching;
+                    cardIDSearching = searchRegisterBorrowedView.getTextInput();
+                    Session.remove("cardIDSearching");
+                    Session.add("cardIDSearching", cardIDSearching);
+                    setTableModel();
+                } break;
+                
+                case BACK_BTN: {
+                    MainController.redirect_to(SearchRegisterBorrowedController.class,
+                            LibrarianManageController.class);
                 } break;
                 default: break;
             }

@@ -6,8 +6,10 @@
 package com.library.views.librarians;
 
 import static com.library.utils.Utils.*;
+import java.awt.GridLayout;
 import java.awt.event.ActionListener;
-import javax.swing.JFrame;
+
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -33,104 +35,108 @@ public class SearchRegisterBorrowedView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
-        enterLabel = new javax.swing.JLabel();
-        searchInput = new javax.swing.JTextField();
-        searchBtn = new javax.swing.JButton();
-        jPanel5 = new javax.swing.JPanel();
+        masterPane = new javax.swing.JPanel();
+        headerPane = new javax.swing.JPanel();
+        hustLabel = new javax.swing.JLabel();
         underPane = new javax.swing.JPanel();
-        contentPane = new javax.swing.JPanel();
+        searchPane = new javax.swing.JPanel();
+        backBtn = new javax.swing.JButton();
+        searchInput = new javax.swing.JTextField();
+        cardLabel = new javax.swing.JLabel();
+        searchBtn = new javax.swing.JButton();
+        under2_Pane = new javax.swing.JPanel();
+        underBtnPane = new javax.swing.JPanel();
+        contentPane = new javax.swing.JPanel(new GridLayout(1, 1));
+        contentPane.setBorder(BorderFactory.createEmptyBorder(20, 50, 20, 50));
         jScrollPane1 = new javax.swing.JScrollPane();
         contentTable = new javax.swing.JTable();
+        
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        jPanel1.setLayout(new java.awt.BorderLayout());
+        masterPane.setLayout(new java.awt.BorderLayout());
 
-        jPanel2.setBackground(new java.awt.Color(23, 240, 203));
-        jPanel2.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        headerPane.setBackground(new java.awt.Color(23, 240, 203));
+        headerPane.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-        jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
-        jLabel1.setText("HUST LIBRARY SYSTEM");
-        jPanel2.add(jLabel1);
+        hustLabel.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
+        hustLabel.setText("HUST LIBRARY SYSTEM");
+        headerPane.add(hustLabel);
 
-        jPanel1.add(jPanel2, java.awt.BorderLayout.PAGE_START);
+        masterPane.add(headerPane, java.awt.BorderLayout.PAGE_START);
 
-        jPanel3.setLayout(new java.awt.BorderLayout());
+        underPane.setLayout(new java.awt.BorderLayout());
 
-        enterLabel.setText("Enter cardID:");
+        backBtn.setText("Back");
+
+        cardLabel.setText("cardID");
 
         searchBtn.setText("Search");
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(84, 84, 84)
-                .addComponent(enterLabel)
-                .addGap(18, 18, 18)
-                .addComponent(searchInput, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(119, Short.MAX_VALUE))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+        javax.swing.GroupLayout searchPaneLayout = new javax.swing.GroupLayout(searchPane);
+        searchPane.setLayout(searchPaneLayout);
+        searchPaneLayout.setHorizontalGroup(
+            searchPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(searchPaneLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(enterLabel)
-                    .addComponent(searchInput, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(backBtn)
+                .addGap(61, 61, 61)
+                .addComponent(cardLabel)
+                .addGap(18, 18, 18)
+                .addComponent(searchInput, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addComponent(searchBtn)
+                .addContainerGap(179, Short.MAX_VALUE))
+        );
+        searchPaneLayout.setVerticalGroup(
+            searchPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(searchPaneLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(searchPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(backBtn)
+                    .addComponent(searchInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cardLabel)
                     .addComponent(searchBtn))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel3.add(jPanel4, java.awt.BorderLayout.PAGE_START);
+        underPane.add(searchPane, java.awt.BorderLayout.PAGE_START);
 
-        jPanel5.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 20, 10, 20));
-        jPanel5.setLayout(new java.awt.BorderLayout());
+        under2_Pane.setLayout(new java.awt.BorderLayout());
 
-        javax.swing.GroupLayout underPaneLayout = new javax.swing.GroupLayout(underPane);
-        underPane.setLayout(underPaneLayout);
-        underPaneLayout.setHorizontalGroup(
-            underPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 760, Short.MAX_VALUE)
+        javax.swing.GroupLayout underBtnPaneLayout = new javax.swing.GroupLayout(underBtnPane);
+        underBtnPane.setLayout(underBtnPaneLayout);
+        underBtnPaneLayout.setHorizontalGroup(
+            underBtnPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 800, Short.MAX_VALUE)
         );
-        underPaneLayout.setVerticalGroup(
-            underPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        underBtnPaneLayout.setVerticalGroup(
+            underBtnPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
-        jPanel5.add(underPane, java.awt.BorderLayout.PAGE_END);
-
-        contentPane.setLayout(new java.awt.GridLayout());
-
+        under2_Pane.add(underBtnPane, java.awt.BorderLayout.PAGE_END);
         
         jScrollPane1.setViewportView(contentTable);
 
         contentPane.add(jScrollPane1);
 
-        jPanel5.add(contentPane, java.awt.BorderLayout.CENTER);
+        under2_Pane.add(contentPane, java.awt.BorderLayout.CENTER);
 
-        jPanel3.add(jPanel5, java.awt.BorderLayout.CENTER);
+        underPane.add(under2_Pane, java.awt.BorderLayout.CENTER);
 
-        jPanel1.add(jPanel3, java.awt.BorderLayout.CENTER);
+        masterPane.add(underPane, java.awt.BorderLayout.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(masterPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 462, Short.MAX_VALUE)
+            .addComponent(masterPane, javax.swing.GroupLayout.DEFAULT_SIZE, 538, Short.MAX_VALUE)
         );
         this.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         this.setLocationRelativeTo(null);
@@ -142,6 +148,10 @@ public class SearchRegisterBorrowedView extends javax.swing.JFrame {
         this.contentTable.removeAll();
         this.contentTable.setModel(tableModel);
         this.contentTable.repaint();
+    }
+    
+    public String getTextInput() {
+        return searchInput.getText();
     }
     /**
      * @param args the command line arguments
@@ -179,23 +189,26 @@ public class SearchRegisterBorrowedView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify                     
+    private javax.swing.JButton backBtn;
+    private javax.swing.JLabel cardLabel;
     private javax.swing.JPanel contentPane;
     private javax.swing.JTable contentTable;
-    private javax.swing.JLabel enterLabel;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel headerPane;
+    private javax.swing.JLabel hustLabel;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel masterPane;
     private javax.swing.JButton searchBtn;
     private javax.swing.JTextField searchInput;
+    private javax.swing.JPanel searchPane;
+    private javax.swing.JPanel under2_Pane;
+    private javax.swing.JPanel underBtnPane;
     private javax.swing.JPanel underPane;
     // End of variables declaration     
     
     public void setSearchRegisBorrListener(ActionListener act) {
         searchBtn.addActionListener(act);
         searchBtn.setActionCommand(SEARCH_BTN);
+        backBtn.addActionListener(act);
+        backBtn.setActionCommand(BACK_BTN);
     }
 }

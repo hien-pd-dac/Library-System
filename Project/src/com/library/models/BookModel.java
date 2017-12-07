@@ -6,6 +6,7 @@
 package com.library.models;
 
 import com.library.helpers.ConnectDatabase;
+import com.library.helpers.Session;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -23,14 +24,31 @@ public class BookModel {
     private String author;
     private String ISBN;
     
-    public static ResultSet getAllBook() {
-        String sqlCommand = "SELECT * FROM book";
+    public static ResultSet getListBookResult() {
+        String sqlCommand;
+        if( Session.get("bookIDSearching").equals("all")) {
+            sqlCommand = "SELECT * FROM book";
+        } else {
+            sqlCommand = "SELECT * FROM book WHERE BookID = ? ";
+        }
+        
         ResultSet rs = null;
         PreparedStatement pst;
         try {
 //            ConnectDatabase.getConnect();
             pst = ConnectDatabase.con.prepareStatement(sqlCommand);
+            if ( ! Session.get("bookIDSearching").equals("all")) {
+                pst.setString(1, Session.get("bookIDSearching"));
+            }
             rs = pst.executeQuery();
+            int rowcount = 0;
+            if (rs.last()) {
+              rowcount = rs.getRow();
+              rs.beforeFirst(); // not rs.first() because the rs.next() below will move on, missing the first element
+            }
+            if (rowcount == 0) return null;
+            else
+                return rs;
             
         } catch (SQLException ex) {
             Logger.getLogger(BookModel.class.getName()).log(Level.SEVERE, null, ex);

@@ -149,6 +149,10 @@ public class ListBookView extends javax.swing.JFrame {
         String result = contentTable.getModel().getValueAt(row, 0).toString();
         return result;
     }
+    
+    public String getTextInput() {
+        return searchInput.getText();
+    }
     /**
      * @param args the command line arguments
      */
