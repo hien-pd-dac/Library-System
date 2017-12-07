@@ -37,6 +37,7 @@ public class BorrowerMenuController implements BaseController {
                 } break;
                 case BOOK_CART_BTN: {
                     // TODO
+                    MainController.redirect_to(BorrowerMenuController.class, BookCartController.class);
                 } break;
                 case BORROWED_HISTORY_BTN: {
                     // TODO

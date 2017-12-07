@@ -10,7 +10,7 @@ import java.awt.Dimension;
 import java.awt.event.ActionListener;
 
 /**
- *
+ * Librarian View
  * @author Ronaldo Hanh
  */
 public class LibrarianManageView extends javax.swing.JFrame {
@@ -143,6 +143,10 @@ public class LibrarianManageView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnQuanLiTheActionPerformed
 
+    /**
+     * Hàm bắt sự kiện khi click button quản lí thẻ
+     * @param listener 
+     */
     public void addCardManageListener(ActionListener listener){
         btnQuanLiThe.addActionListener(listener);
     }

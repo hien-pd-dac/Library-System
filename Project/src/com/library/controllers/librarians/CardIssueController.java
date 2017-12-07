@@ -15,7 +15,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * Controller quản lí chức năng phát hành thẻ
  * @author Ronaldo Hanh
  */
 public class CardIssueController implements BaseController {
@@ -62,28 +62,14 @@ public class CardIssueController implements BaseController {
          */
         private void saveInfoToSession() {
             String date = cardIssueView.getYear() + "-" + cardIssueView.getMonth() + "-" + cardIssueView.getDay();
-            Session.add("userIDIssueCard", cardIssueView.getUserID());
+            Session.add("userIDIssueCard", cardIssueView.getUserName());
             Session.add("activationCode", cardIssueView.getActivationCode());
             Session.add("expiredDate", date);
             Session.add("year", cardIssueView.getYear());
             Session.add("month", cardIssueView.getMonth());
             Session.add("date", cardIssueView.getDay());
         }
-
-//        /**
-//         * Funtion checkInfo validate thông tin đã nhập
-//         * @return true nếu thông tin đã nhập validate
-//         * @return false nếu thông tin đã nhập not validate
-//         */
-//        private int checkInfo() {
-//            if (card.validateInfo(Session.get("date"), Session.get("month"), Session.get("year")) == true) {
-//                System.out.println("Du lieu validate OK");
-//                return 1;
-//            } else {
-//                System.out.println("Du lieu validate Fail");
-//                return 0;
-//            }
-//        }
+        
         /**
          * Function removeSession xóa dữ liệu ở Session khi không dùng nữa
          */

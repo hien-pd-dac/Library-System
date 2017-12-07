@@ -16,9 +16,11 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Vector;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
+ * Controller quản lí chức năng tìm kiếm thẻ
  *
  * @author Ronaldo Hanh
  */
@@ -41,6 +43,7 @@ public class CardSearchController implements BaseController {
 
     @Override
     public void hideGUI() {
+        clearTable(view.getTableResult());
         view.setVisible(false);
         //view.getPane().setVisible(false);
     }
@@ -51,6 +54,22 @@ public class CardSearchController implements BaseController {
         view.getPane().setVisible(true);
     }
 
+    /**
+     * Hàm clear bảng sau khi thực hiện tìm kiếm
+     *
+     * @param table
+     */
+    public void clearTable(JTable table) {
+        for (int i = 0; i < table.getRowCount(); i++) {
+            for (int j = 0; j < table.getColumnCount(); j++) {
+                table.setValueAt("", i, j);
+            }
+        }
+    }
+
+    /**
+     * Lớp lắng nghe sự kiện khi click vào button tìm kiếm thẻ
+     */
     class CardSearchListener implements ActionListener {
 
         @Override
@@ -111,7 +130,6 @@ public class CardSearchController implements BaseController {
                         view.getTableResult().setEnabled(false);
                     }
                 }
-               
             } else {
                 JOptionPane.showMessageDialog(null, "Bạn phải nhập ít nhất 1 trong 3 trường dữ liệu!");
             }
@@ -148,6 +166,9 @@ public class CardSearchController implements BaseController {
 
     }
 
+    /**
+     * Lớp lắng nghe sự kiện khi click button hiển thị tất cả thẻ
+     */
     class CardShowAllListener implements ActionListener {
 
         @Override
@@ -178,6 +199,9 @@ public class CardSearchController implements BaseController {
 
     }
 
+    /**
+     * Lớp lắng nghe sự kiện khi click vào button quay lại
+     */
     class ExitListener implements ActionListener {
 
         @Override
@@ -185,20 +209,21 @@ public class CardSearchController implements BaseController {
             MainController.redirect_to(CardSearchController.class, CardManageController.class);
         }
     }
-    
-    class TableResultClickedListener implements MouseListener{
+
+    /**
+     * Lớp quản lí sự kiện khi click vào 1 dòng trong bảng kết quả trả về
+     */
+    class TableResultClickedListener implements MouseListener {
 
         @Override
         public void mouseClicked(MouseEvent e) {
-           if(e.getClickCount() == 2){
-               int row = view.getTableResult().rowAtPoint(e.getPoint());
-               String id = view.getTableResult().getValueAt(row, 0).toString();
-               System.out.println("ID clicked: " + id);
-               Session.add("IDClicked", id);
-               MainController.redirect_to(CardSearchController.class, CardDetailController.class);
-               //System.out.println("ID clicked: " + id);
-               
-           }
+            if (e.getClickCount() == 2) {
+                int row = view.getTableResult().rowAtPoint(e.getPoint());
+                String id = view.getTableResult().getValueAt(row, 0).toString();
+                System.out.println("ID clicked: " + id);
+                Session.add("IDClicked", id);
+                MainController.redirect_to(CardSearchController.class, CardDetailController.class);
+            }
         }
 
         @Override
@@ -207,19 +232,16 @@ public class CardSearchController implements BaseController {
 
         @Override
         public void mouseReleased(MouseEvent e) {
-            
+
         }
 
         @Override
         public void mouseEntered(MouseEvent e) {
-           
+
         }
 
         @Override
         public void mouseExited(MouseEvent e) {
-            //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         }
-        
     }
-
 }

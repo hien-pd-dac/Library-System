@@ -14,7 +14,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- *
+ * Controller quản lý chức năng hiển thị thông tin chi tiết của thẻ
  * @author Ronaldo Hanh
  */
 public class CardDetailController implements BaseController{
@@ -40,6 +40,9 @@ public class CardDetailController implements BaseController{
         setLabelValue();
     }
     
+    /**
+     * Hàm set giá trị cho các label trong view khi click vào 1 dòng trong bảng tìm kiếm
+     */
     private void setLabelValue(){
         System.out.println("Session id clicked: " + Session.get("IDClicked"));
         card.getCardDetail();
@@ -56,6 +59,9 @@ public class CardDetailController implements BaseController{
         }
     }
     
+    /**
+     * Lớp quản lí lắng nghe sự kiện khi click vào button Cập nhật thông tin thẻ
+     */
     class CardUpdateButtonClickListener implements ActionListener{
 
         @Override
@@ -64,6 +70,9 @@ public class CardDetailController implements BaseController{
         }
     }
     
+    /**
+     * Lớp quản lí lắng nghe sự kiện khi click vào button quay lại
+     */
     class ButtonQuayLaiListener implements ActionListener{
 
         @Override

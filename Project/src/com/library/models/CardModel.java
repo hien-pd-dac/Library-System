@@ -10,10 +10,13 @@ import com.library.helpers.Session;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.Vector;
 import javax.swing.JOptionPane;
 
@@ -26,6 +29,8 @@ import javax.swing.JOptionPane;
  * @method getter and setter
  */
 public class CardModel {
+
+    
 
     private String userCode;
     private Date expiredDate;
@@ -98,11 +103,12 @@ public class CardModel {
      */
     class CardInsert {
 
-        public CardInsert(){
-            if(validateInfo(Session.get("date"), Session.get("month"), Session.get("year")) == true){
+        public CardInsert() {
+            if (validateInfo(Session.get("date"), Session.get("month"), Session.get("year")) == true) {
                 insertToDB();
             }
         }
+
         /**
          * Function insertToDB() kiểm tra dữ liệu trước khi chèn dữ liệu vào
          * database
@@ -126,7 +132,7 @@ public class CardModel {
                     JOptionPane.showMessageDialog(null, "Không tồn tại người vay.");
                 }
             } catch (Exception e) {
-                 JOptionPane.showMessageDialog(null, "Không tồn tại người vay.");
+                JOptionPane.showMessageDialog(null, "Không tồn tại người vay.");
             }
         }
 
@@ -146,7 +152,7 @@ public class CardModel {
                 Date utilDate = new SimpleDateFormat("yyyy-MM-dd").parse(lastCrawlDate);
                 java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
                 stmt1.setDate(3, sqlDate);
-                
+
                 stmt1.executeUpdate();
                 System.out.println("Da den cho insert ");
                 JOptionPane.showMessageDialog(null, "Tạo thẻ thành công!");
@@ -323,6 +329,7 @@ public class CardModel {
                     JOptionPane.showMessageDialog(null, "Không tồn tại mã số thẻ!");
                 }
             } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Không tồn tại mã số thẻ!");
             }
             return data;
         }
@@ -424,6 +431,7 @@ public class CardModel {
                     JOptionPane.showMessageDialog(null, "Không tồn tại thẻ!");
                 }
             } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Không tồn tại thẻ!");
             }
             return data;
         }
@@ -458,6 +466,7 @@ public class CardModel {
                     JOptionPane.showMessageDialog(null, "Không tồn tại thẻ!");
                 }
             } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Không tồn tại thẻ!");
             }
             return data;
         }
@@ -527,6 +536,7 @@ public class CardModel {
                     JOptionPane.showMessageDialog(null, "Không tồn tại thẻ!");
                 }
             } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Không tồn tại thẻ!");
             }
             return data;
         }
@@ -569,6 +579,9 @@ public class CardModel {
      */
     class CardDetail {
 
+        /**
+         * Hàm thực thi hiển thị thông tin chi tiết thẻ
+         */
         public void showByCardID() {
             String sql = "Select * from card natural join user natural join borrower where card.CardID = ?";
             try {
@@ -606,6 +619,9 @@ public class CardModel {
      */
     class CardUpdate {
 
+        /**
+         * Hàm thực thi update
+         */
         public void updateNewexpiredDay() {
             String sql = "Update card set `Expired Date` = ? where `CardID` = ?";
             try {
@@ -629,6 +645,31 @@ public class CardModel {
     public void updateCardInfo() {
         CardUpdate newCard = new CardUpdate();
         newCard.updateNewexpiredDay();
+    }
+    /**
+     * 
+     * @param cardID
+     * @return 0 if the k qua han, !0 la qua han
+     */
+    public static int isExpired(String cardID) {
+        String sqlCommand = "SELECT COUNT(*) AS count "
+                + "FROM card WHERE cardID = ? AND `Expired Date` < ?";
+        ResultSet rs;
+        PreparedStatement pst;
+        try {
+            pst = ConnectDatabase.con.prepareStatement(sqlCommand);
+            pst.setString(1, cardID);
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date date = new Date();
+            pst.setString(2, dateFormat.format(date));
+            rs = pst.executeQuery();
+            if(rs.next()){
+                return Integer.parseInt(rs.getString("count"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(BookModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return -1;
     }
 
 }

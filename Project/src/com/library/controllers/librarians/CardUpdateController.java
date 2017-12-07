@@ -15,14 +15,16 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * Controller quản lí chức năng cập nhật thông tin thẻ
  * @author Ronaldo Hanh
  */
 public class CardUpdateController implements BaseController{
 
     private CardUpdateView view;
     private CardModel card;
-    
+    /**
+     * Hàm khởi tạo 
+     */
     public CardUpdateController(){
         view= new CardUpdateView();
         card = new CardModel();
@@ -39,6 +41,10 @@ public class CardUpdateController implements BaseController{
       view.setVisible(true);
     }
     
+
+    /**
+     * Lớp lắng nghe sự kiện khi click vào button cập nhật thông tin thẻ
+     */
     class CardUpdateListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -52,6 +58,12 @@ public class CardUpdateController implements BaseController{
            }
         }
         
+
+        /**
+         * Hàm kiểm tra ngày hết hạn có hợp lệ hay không
+         * @return 1 nếu ngày hết hạn > ngày hiện tại
+         * @return 0 nếu ngày hết hạn <= ngày hiện tại
+         */
         private int checkNewDate(){
             if (card.validateExpireDay(Session.get("newDay"), Session.get("newMonth"), Session.get("newYear")) == 1) {
                 System.out.println("Du lieu validate OK");
@@ -64,6 +76,9 @@ public class CardUpdateController implements BaseController{
         }  
     }
     
+    /**
+     * Lớp lắng nghe sự kiện click vào button quay lại
+     */
     class ButtonQuayLaiClickListener implements ActionListener{
 
         @Override

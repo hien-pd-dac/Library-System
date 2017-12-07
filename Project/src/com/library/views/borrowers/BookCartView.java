@@ -12,6 +12,8 @@ import static com.library.utils.Utils.*;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 /**
  *
  * @author hpd
@@ -21,11 +23,12 @@ public class BookCartView extends javax.swing.JFrame {
     /**
      * Creates new form BookCartView
      */
+    
     public BookCartView() {
         initComponents();
         this.setTitle("BookCartView");
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -34,7 +37,8 @@ public class BookCartView extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
-        
+        JPanel masterPane = new JPanel(new BorderLayout());
+        this.add(masterPane);
 
         headerPanel = new javax.swing.JPanel();
         hustLabel = new javax.swing.JLabel();
@@ -50,7 +54,7 @@ public class BookCartView extends javax.swing.JFrame {
         hustLabel.setText("HUST LIBRARY SYSTEM");
         headerPanel.add(hustLabel);
 
-        getContentPane().add(headerPanel, java.awt.BorderLayout.PAGE_START);
+        masterPane.add(headerPanel, java.awt.BorderLayout.PAGE_START);
 
         underPanel.setLayout(new java.awt.BorderLayout());
 
@@ -64,10 +68,14 @@ public class BookCartView extends javax.swing.JFrame {
         backPanel.add(backBtn, java.awt.BorderLayout.LINE_START);
         contentPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(30, 30, 30, 30));
         
+        contentTable = new JTable();
+        contentPanel.setBorder(BorderFactory.createEmptyBorder(10, 40, 20, 40));
+        contentPanel.add(new JScrollPane(contentTable));
+        
         underPanel.add(backPanel, java.awt.BorderLayout.PAGE_START);
         underPanel.add(contentPanel, java.awt.BorderLayout.CENTER);
         underPanel.add(createBtnPane(), java.awt.BorderLayout.PAGE_END);
-        getContentPane().add(underPanel, java.awt.BorderLayout.CENTER);
+        masterPane.add(underPanel, java.awt.BorderLayout.CENTER);
         
         this.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         this.setLocationRelativeTo(null);
@@ -87,11 +95,24 @@ public class BookCartView extends javax.swing.JFrame {
         return btnPane;
     }
     
-    public void setTable(JTable contentTable) {
-        contentPanel.removeAll();
-        contentPanel.setBorder(BorderFactory.createEmptyBorder(10, 40, 20, 40));
-        contentPanel.add(new JScrollPane(contentTable));
-        contentPanel.repaint();
+    public void setTable(DefaultTableModel tableModel) {
+        this.contentTable.removeAll();
+        this.contentTable.setModel((TableModel)tableModel);
+        this.contentTable.repaint();
+    }
+    
+    public int getSelectedRow() {
+        return contentTable.getSelectedRow();
+    }
+    
+    public String getSelectedCopyID(int row) {
+        if(row == -1) return null;
+        String result = contentTable.getModel().getValueAt(row, 0).toString();
+        return result;
+    }
+    
+    public DefaultTableModel getTableModel() {
+        return (DefaultTableModel) contentTable.getModel();
     }
 
     /**
@@ -154,4 +175,6 @@ public class BookCartView extends javax.swing.JFrame {
         addMoreBtn.addActionListener(act);
         addMoreBtn.setActionCommand(ADD_MORE_BTN);
     }
+
+    
 }

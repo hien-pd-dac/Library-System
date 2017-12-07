@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JComboBox;
 
 /**
- *
+ * Card Update View
  * @author Ronaldo Hanh
  */
 public class CardUpdateView extends javax.swing.JFrame {
@@ -189,23 +189,43 @@ public class CardUpdateView extends javax.swing.JFrame {
             cbbYear.addItem(i);
         }
     }
-    
+  
+    /**
+     * Hàm lấy ngày hết hạn
+     * @return ngày hết hạn
+     */
     public String getDay(){
         return cbbDay.getSelectedItem().toString();
     }
     
+    /**
+     * Hàm lấy tháng hết hạn
+     * @return tháng hết hạn
+     */
     public String getMonth(){
         return cbbMonth.getSelectedItem().toString();
     }
-     
+    
+    /**
+     * Hàm lấy năm hết hạn
+     * @return năm hết hạn
+     */
     public String getYear(){
         return cbbYear.getSelectedItem().toString();
     }
     
+    /**
+     * Hàm bắt sự kiện khi click button cập nhật thông tin thẻ
+     * @param listener 
+     */
     public void addButtonUpdateListener(ActionListener listener){
         btnCapNhatThongTinThe.addActionListener(listener);
     }
     
+    /**
+     * Hàm bắt sự kiện khi click button quay lại
+     * @param listener 
+     */
     public void addButtonQuayLaiListener(ActionListener listener){
         btnQuayLai.addActionListener(listener);
     }
