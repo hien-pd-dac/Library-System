@@ -120,9 +120,6 @@ public class ListBookView extends javax.swing.JFrame {
      * @param tableModel
      */
     public void setTable(DefaultTableModel tableModel) {
-//        contentPanel.removeAll();
-//        contentPanel.setBorder(BorderFactory.createEmptyBorder(10, 40, 20, 40));
-//        contentPanel.repaint();
         this.contentTable.removeAll();
         this.contentTable.setModel(tableModel);
         this.contentTable.repaint();
