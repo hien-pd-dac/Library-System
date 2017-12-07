@@ -36,9 +36,10 @@ public class ConnectDatabase {
      */
     public static Connection getConnect(){
         try {
+            if(con != null) con.close();
             Class.forName(JDBC_DRIVER);
             con = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
-            System.out.println("Connect success!");
+            System.out.println("Connect success!"); 
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println("Ket noi that bai");
         }

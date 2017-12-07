@@ -47,7 +47,8 @@ public class LoginView extends JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
         
-        
+        JPanel masterPane = new JPanel(new BorderLayout());
+        this.add(masterPane);
         headerPanel = new JPanel();
         hustLabel = new JLabel();
         underPanel = new JPanel();
@@ -60,7 +61,7 @@ public class LoginView extends JFrame {
         hustLabel.setText("HUST LIBRARY SYSTEM");
         headerPanel.add(hustLabel);
 
-        getContentPane().add(headerPanel, BorderLayout.PAGE_START);
+        masterPane.add(headerPanel, BorderLayout.PAGE_START);
 
         underPanel.setLayout(new BorderLayout());
         // add login frame
@@ -129,7 +130,7 @@ public class LoginView extends JFrame {
         
         underPanel.add(titlePanel, BorderLayout.PAGE_START);
         underPanel.add(contentPanel, BorderLayout.CENTER);
-        this.add(underPanel, BorderLayout.CENTER);
+        masterPane.add(underPanel, BorderLayout.CENTER);
 
         
         this.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);

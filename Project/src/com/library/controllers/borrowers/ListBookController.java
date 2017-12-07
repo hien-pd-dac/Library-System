@@ -7,7 +7,12 @@ package com.library.controllers.borrowers;
 
 import com.library.controllers.BaseController;
 import com.library.controllers.MainController;
+import com.library.helpers.Session;
+import com.library.models.BookCartModel;
 import com.library.models.BookModel;
+import com.library.models.CardModel;
+import com.library.models.RegisterBorrowModel;
+import com.library.utils.Utils;
 import static com.library.utils.Utils.*;
 import com.library.views.borrowers.ListBookView;
 import java.awt.event.ActionEvent;
@@ -22,7 +27,7 @@ import javax.swing.table.DefaultTableModel;
  * @author hpd
  */
 public class ListBookController implements BaseController {
-    private final ListBookView listBookView;
+    private ListBookView listBookView;
     private BookModel bookModel;
     
     public ListBookController () {
@@ -32,10 +37,10 @@ public class ListBookController implements BaseController {
     }
     
     private void setDataTable() {
-        listBookView.setTable(getDataTable());
+        listBookView.setTable(getTableModel());
     }
     
-    private JTable getDataTable() {
+    private DefaultTableModel getTableModel() {
         JTable dataTable = new JTable();
         DefaultTableModel model;
         model = new DefaultTableModel(){
@@ -68,7 +73,8 @@ public class ListBookController implements BaseController {
         }
         dataTable.setModel(model);
         
-        return dataTable;
+//        return dataTable;
+        return model;
     }
     
     private class ListBookViewAction implements ActionListener{
@@ -83,7 +89,48 @@ public class ListBookController implements BaseController {
                     // VIET HUNG TODO
                 } break;
                 case ADD_TO_CART_BTN: {
-                    // TODO
+                    // TODO HIEN
+                    int row = listBookView.getSelectedRow();
+                    if(row == -1) {
+                        JOptionPane.showMessageDialog(null, "Select a book to add to bookcart!", 
+                                    "Error", JOptionPane.ERROR_MESSAGE);
+                    } else {
+                        if (CardModel.isExpired(Session.get("cardID")) != 0) {
+                            JOptionPane.showMessageDialog(null, "Card is Expired!", "Error", JOptionPane.ERROR_MESSAGE);
+                        } else if (RegisterBorrowModel.hasOverUnreturned(Session.get("cardID")) != 0) {
+                            JOptionPane.showMessageDialog(null, "You have Over Unreturned Book!", "Error", JOptionPane.ERROR_MESSAGE);
+                        } else {
+                            int numBookInCart = BookCartModel.getNumberOfBookInCart();
+                            int numBookRegisterd;
+                            numBookRegisterd = RegisterBorrowModel.getNumberOfBookRegistered(Session.get("cardID"));
+                            if (numBookInCart + numBookRegisterd >= 5) {
+                                JOptionPane.showMessageDialog(null, numBookInCart+" in Cart, "+ numBookRegisterd+" registerd."
+                                        + "Can't add anymore!", "Error", JOptionPane.ERROR_MESSAGE);
+                            } else {
+                                String bookID = listBookView.getSelectedBookID(row);
+            //                    System.out.println(bookID);
+                                int minCopyID = BookModel.getMinCopyID(bookID);
+                                if(minCopyID <= 0) {
+                                    JOptionPane.showMessageDialog(null, "Book is not available!", 
+                                                "Error", JOptionPane.ERROR_MESSAGE);
+                                } else if (BookCartModel.numberAlreadyInCart(bookID) > 0) {
+                                    JOptionPane.showMessageDialog(null, "Book was already in your cart!", 
+                                                "Error", JOptionPane.ERROR_MESSAGE);
+                                } else {
+                                    int addResult = BookCartModel.addToCart(Session.get("cardID"), Integer.toString(minCopyID));
+                                    if (addResult > 0){
+                                        JOptionPane.showMessageDialog(null, "Add to cart successfully!", 
+                                                "Success", JOptionPane.DEFAULT_OPTION);
+                                    }
+                                }
+                            }
+                        }
+                        
+                        
+                    }
+                } break;
+                case BOOK_CART_BTN: {
+                    MainController.redirect_to(ListBookController.class, BookCartController.class);
                 } break;
                 default: break;
             }
@@ -99,7 +146,10 @@ public class ListBookController implements BaseController {
 
     @Override
     public void showGUI() {
+        setDataTable();
         listBookView.setVisible(true);
     }
-    
+    public static void main(String[] args) {
+        MainController.redirect_to(null, ListBookController.class);
+    }
 }

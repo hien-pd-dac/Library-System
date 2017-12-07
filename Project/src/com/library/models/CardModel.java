@@ -10,10 +10,13 @@ import com.library.helpers.Session;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.Vector;
 import javax.swing.JOptionPane;
 
@@ -26,6 +29,8 @@ import javax.swing.JOptionPane;
  * @method getter and setter
  */
 public class CardModel {
+
+    
 
     private String userCode;
     private Date expiredDate;
@@ -648,6 +653,31 @@ public class CardModel {
     public void updateCardInfo() {
         CardUpdate newCard = new CardUpdate();
         newCard.updateNewexpiredDay();
+    }
+    /**
+     * 
+     * @param cardID
+     * @return 0 if the k qua han, !0 la qua han
+     */
+    public static int isExpired(String cardID) {
+        String sqlCommand = "SELECT COUNT(*) AS count "
+                + "FROM card WHERE cardID = ? AND `Expired Date` < ?";
+        ResultSet rs;
+        PreparedStatement pst;
+        try {
+            pst = ConnectDatabase.con.prepareStatement(sqlCommand);
+            pst.setString(1, cardID);
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date date = new Date();
+            pst.setString(2, dateFormat.format(date));
+            rs = pst.executeQuery();
+            if(rs.next()){
+                return Integer.parseInt(rs.getString("count"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(BookModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return -1;
     }
 
 }

@@ -6,6 +6,7 @@
 package com.library.views.borrowers;
 
 import static com.library.utils.Utils.*;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.FlowLayout;
@@ -37,6 +38,9 @@ public class ListBookView extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
+        JPanel masterPane = new JPanel(new BorderLayout());
+        this.add(masterPane);
+        
         headerPanel = new javax.swing.JPanel();
         hustLabel = new javax.swing.JLabel();
         underPanel = new javax.swing.JPanel();
@@ -56,7 +60,7 @@ public class ListBookView extends javax.swing.JFrame {
         hustLabel.setText("HUST LIBRARY SYSTEM");
         headerPanel.add(hustLabel);
 
-        getContentPane().add(headerPanel, java.awt.BorderLayout.PAGE_START);
+        masterPane.add(headerPanel, java.awt.BorderLayout.PAGE_START);
 
         underPanel.setLayout(new java.awt.BorderLayout());
 
@@ -97,9 +101,13 @@ public class ListBookView extends javax.swing.JFrame {
 
         contentPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
         
+        contentTable = new JTable();
+        contentPanel.setBorder(BorderFactory.createEmptyBorder(10, 40, 20, 40));
+        contentPanel.add(new JScrollPane(contentTable));
+        
         underPanel.add(contentPanel, java.awt.BorderLayout.CENTER);
         underPanel.add(createBtnPane(), java.awt.BorderLayout.PAGE_END);
-        this.add(underPanel, java.awt.BorderLayout.PAGE_END);
+        masterPane.add(underPanel, java.awt.BorderLayout.PAGE_END);
 
         this.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         this.setLocationRelativeTo(null);
@@ -109,21 +117,40 @@ public class ListBookView extends javax.swing.JFrame {
 
     /**
      *
-     * @param contentTable
+     * @param tableModel
      */
-    public void setTable(JTable contentTable) {
-        contentPanel.removeAll();
-        contentPanel.setBorder(BorderFactory.createEmptyBorder(10, 40, 20, 40));
-        contentPanel.add(new JScrollPane(contentTable));
-        contentPanel.repaint();
+    public void setTable(DefaultTableModel tableModel) {
+//        contentPanel.removeAll();
+//        contentPanel.setBorder(BorderFactory.createEmptyBorder(10, 40, 20, 40));
+//        contentPanel.repaint();
+        this.contentTable.removeAll();
+        this.contentTable.setModel(tableModel);
+        this.contentTable.repaint();
     }
 
     private JPanel createBtnPane() {
         JPanel btnPane = new JPanel();
-        btnPane.setBorder(BorderFactory.createEmptyBorder(0, 10, 5, 10));
+        btnPane.setBorder(BorderFactory.createEmptyBorder(0, 300, 5, 300));
+        btnPane.setLayout(new GridLayout(1, 2, 10, 10));
         addToCartBtn = new JButton("Add to cart");
         btnPane.add(addToCartBtn);
+        bookCartBtn = new JButton("Book Cart");
+        btnPane.add(bookCartBtn);
         return btnPane;
+    }
+    
+    /**
+     * 
+     * @return -1 if not selected
+     */
+    public int getSelectedRow() {
+        return contentTable.getSelectedRow();
+    }
+    
+    public String getSelectedBookID(int row) {
+        if(row == -1) return null;
+        String result = contentTable.getModel().getValueAt(row, 0).toString();
+        return result;
     }
     /**
      * @param args the command line arguments
@@ -172,8 +199,10 @@ public class ListBookView extends javax.swing.JFrame {
     private javax.swing.JButton searchBtn;
     private javax.swing.JTextField searchInput;
     
-    private javax.swing.JTable bookTable;
+    private javax.swing.JTable contentTable;
     private javax.swing.JButton addToCartBtn;
+    private javax.swing.JButton bookCartBtn;
+    
     
     /**
      *
@@ -186,6 +215,8 @@ public class ListBookView extends javax.swing.JFrame {
         searchBtn.setActionCommand(SEARCH_BTN);
         addToCartBtn.addActionListener(act);
         addToCartBtn.setActionCommand(ADD_TO_CART_BTN);
+        bookCartBtn.addActionListener(act);
+        bookCartBtn.setActionCommand(BOOK_CART_BTN);
         
     }
     
