@@ -103,7 +103,7 @@ public class BookCartController implements BaseController {
         for (int i = 0; i < rowCount; i++) {
             copyID[i] = tableModel.getValueAt(i, 0).toString();
         }
-        if (0 == RegisterBorrowModel.saveRegisterBorrow(Session.get("cardID"), rowCount, copyID)) 
+        if (0 == RegisterBorrowedModel.saveRegisterBorrow(Session.get("cardID"), rowCount, copyID)) 
             return 0;
         else return 1;
     }

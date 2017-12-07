@@ -21,7 +21,7 @@ import java.util.logging.Logger;
  *
  * @author hpd
  */
-public class RegisterBorrowModel {
+public class RegisterBorrowedModel {
     
     /**
      * 
@@ -112,5 +112,49 @@ public class RegisterBorrowModel {
             Logger.getLogger(BookModel.class.getName()).log(Level.SEVERE, null, ex);
         }
         return -1;
+    }
+    
+    public static ResultSet getRegisterBorrowed(String cardID) {
+        String sqlCommand;
+        if (cardID.equals("all")) {
+            sqlCommand = "SELECT a.registerID, a.cardID, a.registerAt, a.returnAt, "
+                    + "c.BookID, c.copy_sequence, d.title, c.status\n" +
+                        "FROM registerborrow as a\n" +
+                        "NATURAL JOIN registerborrowline as b\n" +
+                        "NATURAL JOIN copyofbook as c\n" +
+                        "NATURAL JOIN book as d\n"
+                    + "ORDER BY a.registerAt DESC";
+        } else {
+            sqlCommand = "SELECT a.registerID, a.cardID, a.registerAt, a.returnAt, "
+                    + "c.BookID, c.copy_sequence, d.title, c.status\n" +
+                    "FROM registerborrow as a\n" +
+                    "NATURAL JOIN registerborrowline as b\n" +
+                    "NATURAL JOIN copyofbook as c\n" +
+                    "NATURAL JOIN book as d\n"
+                    + "WHERE a.cardID = ? \n"
+                    + "ORDER BY a.registerAt DESC";
+        }
+        
+        ResultSet rs;
+        PreparedStatement pst;
+        try {
+//            ConnectDatabase.getConnect();
+            pst = ConnectDatabase.con.prepareStatement(sqlCommand);
+            if ( ! cardID.equals("all")) {
+                pst.setString(1, cardID);
+            }
+            rs = pst.executeQuery();
+            int rowcount = 0;
+            if (rs.last()) {
+              rowcount = rs.getRow();
+              rs.beforeFirst(); // not rs.first() because the rs.next() below will move on, missing the first element
+            }
+            if (rowcount == 0) return null;
+            else
+                return rs;
+        } catch (SQLException e) {
+            System.out.println("error query!");
+            return null;
+        }
     }
 }

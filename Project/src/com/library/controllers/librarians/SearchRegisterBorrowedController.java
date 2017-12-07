@@ -26,10 +26,86 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
-public class SearchRegisterBorrowedController {
+public class SearchRegisterBorrowedController implements BaseController {
     private SearchRegisterBorrowedView searchRegisterBorrowedView;
     
     public SearchRegisterBorrowedController() {
-        
+        Session.add("cardIDSearching", "all");
+        searchRegisterBorrowedView = new SearchRegisterBorrowedView();
+        setTableModel();
+        searchRegisterBorrowedView.setSearchRegisBorrListener(new SearchRegisterAction());
     }
+    
+    /**
+     * 
+     * @param cardID if null is get all
+     */
+    private void setTableModel() {
+        String cardID = Session.get("cardIDSearching");
+        DefaultTableModel tableModel = getTableModel(cardID);
+        searchRegisterBorrowedView.setTable(tableModel);
+    }
+    
+    private DefaultTableModel getTableModel(String cardID) {
+        DefaultTableModel model;
+        model = new DefaultTableModel(){
+            @Override
+            public boolean isCellEditable(int row, int column)
+            {
+                return false;//This causes all cells to be not editable
+            }
+        };
+        ResultSet rs; 
+        rs = RegisterBorrowedModel.getRegisterBorrowed(cardID);
+        if(rs == null) return new DefaultTableModel();
+        try {
+            ResultSetMetaData rsMD = rs.getMetaData();
+            int colNumber = rsMD.getColumnCount();
+            String[] arr = new String[colNumber];
+            for (int i = 0; i < colNumber; i++) {
+                arr[i] = rsMD.getColumnName(i+1);
+            }
+            model.setColumnIdentifiers(arr);
+            while(rs.next()) {
+                for (int i = 0; i < colNumber; i++) {
+                    arr[i] = rs.getString(i+1);
+                }
+                model.addRow(arr);
+            }
+        } catch (SQLException e) {
+            
+        }
+        return model;
+    }
+    
+    private class SearchRegisterAction implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            switch(e.getActionCommand()) {
+                case SEARCH_BTN: {
+                    Utils.debug(SEARCH_BTN);
+                } break;
+                default: break;
+            }
+        }
+    }
+
+    @Override
+    public void hideGUI() {
+        searchRegisterBorrowedView.setVisible(false);
+    }
+
+    @Override
+    public void showGUI() {
+        setTableModel();
+        searchRegisterBorrowedView.setVisible(true);
+    }
+    
+    public static void main(String[] args) {
+        SearchRegisterBorrowedController controller = new SearchRegisterBorrowedController();
+        controller.showGUI();
+    }
+
+    
 }

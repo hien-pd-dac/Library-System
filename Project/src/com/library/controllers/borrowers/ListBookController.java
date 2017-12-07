@@ -11,7 +11,7 @@ import com.library.helpers.Session;
 import com.library.models.BookCartModel;
 import com.library.models.BookModel;
 import com.library.models.CardModel;
-import com.library.models.RegisterBorrowModel;
+import com.library.models.RegisterBorrowedModel;
 import com.library.utils.Utils;
 import static com.library.utils.Utils.*;
 import com.library.views.borrowers.ListBookView;
@@ -97,12 +97,12 @@ public class ListBookController implements BaseController {
                     } else {
                         if (CardModel.isExpired(Session.get("cardID")) != 0) {
                             JOptionPane.showMessageDialog(null, "Card is Expired!", "Error", JOptionPane.ERROR_MESSAGE);
-                        } else if (RegisterBorrowModel.hasOverUnreturned(Session.get("cardID")) != 0) {
+                        } else if (RegisterBorrowedModel.hasOverUnreturned(Session.get("cardID")) != 0) {
                             JOptionPane.showMessageDialog(null, "You have Over Unreturned Book!", "Error", JOptionPane.ERROR_MESSAGE);
                         } else {
                             int numBookInCart = BookCartModel.getNumberOfBookInCart();
                             int numBookRegisterd;
-                            numBookRegisterd = RegisterBorrowModel.getNumberOfBookRegistered(Session.get("cardID"));
+                            numBookRegisterd = RegisterBorrowedModel.getNumberOfBookRegistered(Session.get("cardID"));
                             if (numBookInCart + numBookRegisterd >= 5) {
                                 JOptionPane.showMessageDialog(null, numBookInCart+" in Cart, "+ numBookRegisterd+" registerd."
                                         + "Can't add anymore!", "Error", JOptionPane.ERROR_MESSAGE);
