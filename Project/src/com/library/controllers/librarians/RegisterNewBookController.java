@@ -65,6 +65,8 @@ public class RegisterNewBookController implements BaseController {
             Session.add("MaVach",registerNewBookView.getMaVach());
             Session.add("nameBook",registerNewBookView.getNameBook());
             Session.add("NhaXuatBan",registerNewBookView.getNXB());
+            Session.add("SoLuong",registerNewBookView.getSoLuong());
+            Session.add("GiaTien",registerNewBookView.getGiaTien());
         }
     }   
 }

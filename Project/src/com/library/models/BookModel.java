@@ -160,12 +160,12 @@ public class BookModel {
                         JOptionPane.showMessageDialog(null, "sách đã tồn tại");                    }
 
                 } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "sách đã tồn tại.");
             }
     }  
 
 
     private void insert() {
+        
             Connection con1 = ConnectDatabase.con;
             PreparedStatement stmt1;
             ResultSet rs1;
@@ -178,11 +178,32 @@ public class BookModel {
                 stmt1.setString(4, Session.get("author"));
                 stmt1.setString(5, Session.get("MaVach"));            
                 
-                stmt1.executeUpdate();
-                System.out.println("Da den cho insert ");
+                stmt1.executeUpdate();               
                 JOptionPane.showMessageDialog(null, "Đăng kí sách thành công!");
+                      
             } catch (Exception e) {
-            }
-        }
+            }insertCopy();
+    }
+      private void insertCopy() {
+          int i = Integer.parseInt(Session.get("SoLuong")); int n;
+          Connection con1 = ConnectDatabase.con;
+            PreparedStatement stmt1;
+            ResultSet rs1;
+             String insertCopyOfBook = "INSERT into `copyofbook`(`copy_sequence`, `BookID`, `price`, `typeOfCopy`, `status`) values (?, ?, ?, ?, ? )";
+                try{for(n=1; n<=i; n++){
+                    stmt1 = con1.prepareStatement(insertCopyOfBook);
+                    stmt1.setInt(1, n);
+                    stmt1.setString(2, Session.get("BookID"));
+                    stmt1.setInt(3, Integer.parseInt(Session.get("GiaTien")));
+                    stmt1.setInt(4, 1);
+                    stmt1.setInt(5, 0);
+                    stmt1.executeUpdate();
+                   JOptionPane.showMessageDialog(null, "Đăng kí sách thành công!");
+                }
+                   
+                }catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Đăng kí sách thành công!");
+    }
+}
 }
 }

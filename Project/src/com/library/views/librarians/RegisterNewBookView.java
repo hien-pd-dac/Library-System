@@ -51,7 +51,9 @@ public class RegisterNewBookView extends javax.swing.JFrame {
         btnHuyRegister = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         tfISBN = new javax.swing.JTextField();
-        SpSoLuong = new javax.swing.JSpinner();
+        cbbSoLuong = new javax.swing.JComboBox<>();
+        jLabel9 = new javax.swing.JLabel();
+        tfGiaTien = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -139,6 +141,21 @@ public class RegisterNewBookView extends javax.swing.JFrame {
             }
         });
 
+        cbbSoLuong.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15" }));
+        cbbSoLuong.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbbSoLuongActionPerformed(evt);
+            }
+        });
+
+        jLabel9.setText("giá tiền");
+
+        tfGiaTien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfGiaTienActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -154,23 +171,25 @@ public class RegisterNewBookView extends javax.swing.JFrame {
                             .addComponent(jLabel5)
                             .addComponent(jLabel6)
                             .addComponent(jLabel7)
-                            .addComponent(jLabel8))
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel9))
                         .addGap(79, 79, 79)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(14, 14, 14)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(cbbSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(tfNameBook)
                                     .addComponent(tfAuthor)
                                     .addComponent(cbbNxb, 0, 192, Short.MAX_VALUE)
                                     .addComponent(tfBookID)
                                     .addComponent(tfISBN)
-                                    .addComponent(SpSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(tfGiaTien)))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(275, 275, 275)
+                        .addGap(273, 273, 273)
                         .addComponent(btnOKRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(80, 80, 80)
+                        .addGap(87, 87, 87)
                         .addComponent(btnHuyRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -195,7 +214,7 @@ public class RegisterNewBookView extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(SpSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbbSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
@@ -204,11 +223,15 @@ public class RegisterNewBookView extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8)
                     .addComponent(tfISBN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(tfGiaTien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnOKRegister)
                     .addComponent(btnHuyRegister))
-                .addGap(29, 29, 29))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         pack();
@@ -241,11 +264,25 @@ public class RegisterNewBookView extends javax.swing.JFrame {
     private void cbbNxbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbNxbActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbbNxbActionPerformed
+
+    private void cbbSoLuongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbSoLuongActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbbSoLuongActionPerformed
+
+    private void tfGiaTienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfGiaTienActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfGiaTienActionPerformed
+    private void SpSoLuongActionPerformed(java.awt.event.ActionEvent evt){
+        
+    }
     public void addButtonOKRegisterNewBookListener(ActionListener listener){
         btnOKRegister.addActionListener(listener);
     }
     public void addButtonbtnHuyRegisterNewBookListener(ActionListener listener){
         btnHuyRegister.addActionListener(listener);
+    }
+    public String getGiaTien(){
+        return tfGiaTien.getText();
     }
     public String getNameBook(){
         return tfNameBook.getText();
@@ -262,8 +299,8 @@ public class RegisterNewBookView extends javax.swing.JFrame {
     public String getNXB(){
         return cbbNxb.getSelectedItem().toString();
     }
-    public Object getSoLuong(){
-        return SpSoLuong.getValue();
+    public String getSoLuong(){
+        return cbbSoLuong.getSelectedItem().toString();
     }
     /**
      * @param args the command line arguments
@@ -302,10 +339,10 @@ public class RegisterNewBookView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JSpinner SpSoLuong;
     private javax.swing.JButton btnHuyRegister;
     private javax.swing.JButton btnOKRegister;
     private javax.swing.JComboBox<String> cbbNxb;
+    private javax.swing.JComboBox<String> cbbSoLuong;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -314,9 +351,11 @@ public class RegisterNewBookView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField tfAuthor;
     private javax.swing.JTextField tfBookID;
+    private javax.swing.JTextField tfGiaTien;
     private javax.swing.JTextField tfISBN;
     private javax.swing.JTextField tfNameBook;
     // End of variables declaration//GEN-END:variables
