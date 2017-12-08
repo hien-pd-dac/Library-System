@@ -332,11 +332,14 @@ public class CardModel {
                     user.addElement(rs.getString(7));
                     System.out.println(user);
                     data.add(user);
+                    Session.add("testSearchCardResult", "1");
                 }
                 if (check == false) {
+                    Session.add("testSearchCardResult", "0");
                     JOptionPane.showMessageDialog(null, "Không tồn tại mã số thẻ!");
                 }
             } catch (Exception e) {
+                Session.add("testSearchCardResult", "0");
                 JOptionPane.showMessageDialog(null, "Không tồn tại mã số thẻ!");
             }
             return data;
@@ -367,11 +370,14 @@ public class CardModel {
                     user.addElement(rs.getString(7));
                     System.out.println(user);
                     data.add(user);
+                    Session.add("testSearchCardResult", "1");
                 }
                 if (check == false) {
+                    Session.add("testSearchCardResult", "0");
                     JOptionPane.showMessageDialog(null, "Không tồn tại thẻ!");
                 }
             } catch (Exception e) {
+                Session.add("testSearchCardResult", "0");
             }
             return data;
         }
@@ -400,11 +406,14 @@ public class CardModel {
                     user.addElement(rs.getString(7));
                     System.out.println(user);
                     data.add(user);
+                    Session.add("testSearchCardResult", "1");
                 }
                 if (check == false) {
+                    Session.add("testSearchCardResult", "0");
                     JOptionPane.showMessageDialog(null, "Không tồn tại thẻ!");
                 }
             } catch (Exception e) {
+                Session.add("testSearchCardResult", "0");
             }
             return data;
         }
@@ -434,11 +443,14 @@ public class CardModel {
                     user.addElement(rs.getString(7));
                     System.out.println(user);
                     data.add(user);
+                    Session.add("testSearchCardResult", "1");
                 }
                 if (check == false) {
+                    Session.add("testSearchCardResult", "0");
                     JOptionPane.showMessageDialog(null, "Không tồn tại thẻ!");
                 }
             } catch (Exception e) {
+                Session.add("testSearchCardResult", "0");
                 JOptionPane.showMessageDialog(null, "Không tồn tại thẻ!");
             }
             return data;
@@ -469,11 +481,14 @@ public class CardModel {
                     user.addElement(rs.getString(7));
                     System.out.println(user);
                     data.add(user);
+                     Session.add("testSearchCardResult", "1");
                 }
                 if (check == false) {
+                     Session.add("testSearchCardResult", "0");
                     JOptionPane.showMessageDialog(null, "Không tồn tại thẻ!");
                 }
             } catch (Exception e) {
+                 Session.add("testSearchCardResult", "0");
                 JOptionPane.showMessageDialog(null, "Không tồn tại thẻ!");
             }
             return data;
@@ -504,11 +519,14 @@ public class CardModel {
                     user.addElement(rs.getString(7));
                     System.out.println(user);
                     data.add(user);
+                    Session.add("testSearchCardResult", "1");
                 }
                 if (check == false) {
+                    Session.add("testSearchCardResult", "0");
                     JOptionPane.showMessageDialog(null, "Không tồn tại thẻ!");
                 }
             } catch (Exception e) {
+                Session.add("testSearchCardResult", "0");
             }
             return data;
         }
@@ -539,11 +557,14 @@ public class CardModel {
                     user.addElement(rs.getString(7));
                     System.out.println(user);
                     data.add(user);
+                    Session.add("testSearchCardResult", "1");
                 }
                 if (check == false) {
+                    Session.add("testSearchCardResult", "0");
                     JOptionPane.showMessageDialog(null, "Không tồn tại thẻ!");
                 }
             } catch (Exception e) {
+                Session.add("testSearchCardResult", "0");
                 JOptionPane.showMessageDialog(null, "Không tồn tại thẻ!");
             }
             return data;

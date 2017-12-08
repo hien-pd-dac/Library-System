@@ -10,5 +10,6 @@ package com.library.controllers;
  * @author Ronaldo Hanh
  */
 public interface CardTestController {
-   int testIssueCard(String userName, int day, int month, int year, String activateCode);
+   int testIssueCard(String userName, String day, String month, String year, String activateCode);
+   int testSearchCard(String cardID, String userName, String fullName);
 }

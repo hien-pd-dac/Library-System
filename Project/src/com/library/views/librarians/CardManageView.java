@@ -5,9 +5,12 @@
  */
 package com.library.views.librarians;
 
+import static com.library.utils.Utils.WINDOW_HEIGHT;
+import static com.library.utils.Utils.WINDOW_WIDTH;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import javax.swing.JFrame;
 
 /**
  * Card Manage View
@@ -20,8 +23,10 @@ public class CardManageView extends javax.swing.JFrame {
      */
     public CardManageView() { 
         initComponents();
+        this.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         this.setLocationRelativeTo(null);
-         this.setPreferredSize(new Dimension(800, 500));
+        this.setResizable(false);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     /**
@@ -44,7 +49,7 @@ public class CardManageView extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(800, 500));
 
-        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel1.setBackground(new java.awt.Color(23, 240, 203));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N

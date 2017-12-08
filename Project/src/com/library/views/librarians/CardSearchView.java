@@ -5,9 +5,12 @@
  */
 package com.library.views.librarians;
 
+import static com.library.utils.Utils.WINDOW_HEIGHT;
+import static com.library.utils.Utils.WINDOW_WIDTH;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
+import javax.swing.JFrame;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -23,9 +26,10 @@ public class CardSearchView extends javax.swing.JFrame {
      */
     public CardSearchView() {
         initComponents();
+        this.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         this.setLocationRelativeTo(null);
-        this.setPreferredSize(new Dimension(800, 500));
-        this.pnTable.setVisible(false);
+        this.setResizable(false);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     /**
@@ -56,7 +60,7 @@ public class CardSearchView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel4.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel4.setBackground(new java.awt.Color(23, 240, 203));
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel4.setPreferredSize(new java.awt.Dimension(594, 100));
@@ -64,7 +68,7 @@ public class CardSearchView extends javax.swing.JFrame {
         jLabel3.setBackground(new java.awt.Color(204, 255, 204));
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Thư viện Bách Khoa");
+        jLabel3.setText("HUST LIBRARY SYSTEM");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);

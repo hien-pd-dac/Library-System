@@ -5,9 +5,12 @@
  */
 package com.library.views.librarians;
 
+import static com.library.utils.Utils.WINDOW_HEIGHT;
+import static com.library.utils.Utils.WINDOW_WIDTH;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
+import javax.swing.JFrame;
 
 /**
  * Librarian View
@@ -20,9 +23,10 @@ public class LibrarianManageView extends javax.swing.JFrame {
      */
     public LibrarianManageView() {
         initComponents();
+        this.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         this.setLocationRelativeTo(null);
-        this.setPreferredSize(new Dimension(800, 500));
-        //pnCardManageFunction.setVisible(false);
+        this.setResizable(false);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     /**
@@ -46,12 +50,12 @@ public class LibrarianManageView extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(800, 500));
 
-        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel1.setBackground(new java.awt.Color(23, 240, 203));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Thư viện Bách Khoa");
+        jLabel2.setText("HUST LIBRARY SYSTEM");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
