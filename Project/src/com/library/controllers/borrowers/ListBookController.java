@@ -11,7 +11,7 @@ import com.library.helpers.Session;
 import com.library.models.BookCartModel;
 import com.library.models.BookModel;
 import com.library.models.CardModel;
-import com.library.models.RegisterBorrowModel;
+import com.library.models.RegisterBorrowedModel;
 import com.library.utils.Utils;
 import static com.library.utils.Utils.*;
 import com.library.views.borrowers.ListBookView;
@@ -31,6 +31,8 @@ public class ListBookController implements BaseController {
     private BookModel bookModel;
     
     public ListBookController () {
+        if(Session.get("bookIDSearching") == null)
+            Session.add("bookIDSearching", "all");
         listBookView = new ListBookView();
         setDataTable();
         listBookView.setListBookViewListerner(new ListBookViewAction());
@@ -41,7 +43,6 @@ public class ListBookController implements BaseController {
     }
     
     private DefaultTableModel getTableModel() {
-        JTable dataTable = new JTable();
         DefaultTableModel model;
         model = new DefaultTableModel(){
             @Override
@@ -51,7 +52,8 @@ public class ListBookController implements BaseController {
             }
         };
         ResultSet rs; 
-        rs = BookModel.getAllBook();
+        rs = BookModel.getListBookResult();
+        if(rs == null) return new DefaultTableModel();
         try {
             ResultSetMetaData rsMD = rs.getMetaData();
             int colNumber = rsMD.getColumnCount();
@@ -71,8 +73,6 @@ public class ListBookController implements BaseController {
         } catch (SQLException e) {
             
         }
-        dataTable.setModel(model);
-        
 //        return dataTable;
         return model;
     }
@@ -87,6 +87,16 @@ public class ListBookController implements BaseController {
                 } break;
                 case SEARCH_BTN: {
                     // VIET HUNG TODO
+                    String bookIDSearching = listBookView.getTextInput();
+                    if (bookIDSearching.equals("")) {
+                        Session.remove("bookIDSearching");
+                        Session.add("bookIDSearching", "all");
+                    } else {
+                        Session.remove("bookIDSearching");
+                        Session.add("bookIDSearching", bookIDSearching);
+                    }
+                    setDataTable();
+                    
                 } break;
                 case ADD_TO_CART_BTN: {
                     // TODO HIEN
@@ -97,12 +107,12 @@ public class ListBookController implements BaseController {
                     } else {
                         if (CardModel.isExpired(Session.get("cardID")) != 0) {
                             JOptionPane.showMessageDialog(null, "Card is Expired!", "Error", JOptionPane.ERROR_MESSAGE);
-                        } else if (RegisterBorrowModel.hasOverUnreturned(Session.get("cardID")) != 0) {
+                        } else if (RegisterBorrowedModel.hasOverUnreturned(Session.get("cardID")) != 0) {
                             JOptionPane.showMessageDialog(null, "You have Over Unreturned Book!", "Error", JOptionPane.ERROR_MESSAGE);
                         } else {
                             int numBookInCart = BookCartModel.getNumberOfBookInCart();
                             int numBookRegisterd;
-                            numBookRegisterd = RegisterBorrowModel.getNumberOfBookRegistered(Session.get("cardID"));
+                            numBookRegisterd = RegisterBorrowedModel.getNumberOfBookRegistered(Session.get("cardID"));
                             if (numBookInCart + numBookRegisterd >= 5) {
                                 JOptionPane.showMessageDialog(null, numBookInCart+" in Cart, "+ numBookRegisterd+" registerd."
                                         + "Can't add anymore!", "Error", JOptionPane.ERROR_MESSAGE);

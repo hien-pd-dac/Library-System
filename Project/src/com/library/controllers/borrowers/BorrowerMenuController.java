@@ -47,20 +47,20 @@ public class BorrowerMenuController implements BaseController {
                 } break;
                 case LOGOUT_BTN: {
                     // TODO
-                    clearUserSession();
+                    Session.destroy();
                     MainController.redirect_to(BorrowerMenuController.class, LoginController.class);
                 } break;
-                
                 default: break;
             } 
         }
     }
     
-    private void clearUserSession() {
-        Session.remove("username");
-        Session.remove("password");
-        Session.remove("role");
-    }
+//    private void clearUserSession() {
+//        Session.remove("username");
+//        Session.remove("password");
+//        Session.remove("role");
+//        Session.remove("cardID");
+//    }
     @Override
     public void hideGUI() {
         borrowerMenuView.setVisible(false);

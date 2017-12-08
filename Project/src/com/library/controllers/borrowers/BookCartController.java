@@ -103,7 +103,7 @@ public class BookCartController implements BaseController {
         for (int i = 0; i < rowCount; i++) {
             copyID[i] = tableModel.getValueAt(i, 0).toString();
         }
-        if (0 == RegisterBorrowModel.saveRegisterBorrow(Session.get("cardID"), rowCount, copyID)) 
+        if (0 == RegisterBorrowedModel.saveRegisterBorrow(Session.get("cardID"), rowCount, copyID)) 
             return 0;
         else return 1;
     }
@@ -135,11 +135,12 @@ public class BookCartController implements BaseController {
                             Utils.debug("deleting (cardID, copyID) : " + Session.get("cardID") +" - "+ copyID);
                             int removeResult = BookCartModel.removeFromCart(Session.get("cardID"), copyID);
                             Utils.debug("removeResult: " + removeResult);
+                            setTableModel();
                             if (removeResult > 0){
                                 JOptionPane.showMessageDialog(null, "Remove from cart successfully!", 
                                         "Success", JOptionPane.DEFAULT_OPTION);
                             }
-                            setTableModel();
+                            
                         }
                     }
                     

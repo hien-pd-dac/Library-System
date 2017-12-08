@@ -13,20 +13,43 @@ import java.awt.event.ActionListener;
  * @author Ronaldo Hanh
  */
 public class LibrarianManageController implements BaseController {
-    private LibrarianManageView cardManageView;
+    private LibrarianManageView librarianManageView;
     
     public LibrarianManageController(){
-        this.cardManageView = new LibrarianManageView();
-        cardManageView.addCardManageListener(new CardManageListener());  
+        this.librarianManageView = new LibrarianManageView();
+        librarianManageView.addCardManageListener(new CardManageListener());
+        librarianManageView.addBorrowedManageListener(new BorrowedManageListener());
+        librarianManageView.addButtonManageBookListener(new ManageBookListener());
     }
     
     @Override
     public void hideGUI(){
-        cardManageView.setVisible(false);
+        librarianManageView.setVisible(false);
     }
     
     public void showGUI(){
-        cardManageView.setVisible(true);
+        librarianManageView.setVisible(true);
+    }
+
+    class ManageBookListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            MainController.redirect_to(LibrarianManageController.class, 
+                    ManageBookController.class);
+        }
+    }
+    
+    /**
+     * Lớp lắng nghe sự kiện khi click vào button quản lí muon sach
+     */
+    private class BorrowedManageListener implements ActionListener {
+        
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            MainController.redirect_to(LibrarianManageController.class, 
+                    SearchRegisterBorrowedController.class);
+        }
     }
     
     /**
