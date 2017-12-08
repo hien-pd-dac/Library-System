@@ -5,6 +5,7 @@
  */
 package com.library.controllers.borrowers;
 
+import com.library.models.BookCartModel;
 import com.library.models.BookModel;
 import static com.library.utils.Utils.*;
 import com.library.views.borrowers.BookCartView;
@@ -44,7 +45,7 @@ public class BookCartController {
             }
         };
         ResultSet rs; 
-        rs = BookCart.getBookInCart();
+        rs = BookCartModel.getBookInCart();
         try {
             
             ResultSetMetaData rsMD = rs.getMetaData();
