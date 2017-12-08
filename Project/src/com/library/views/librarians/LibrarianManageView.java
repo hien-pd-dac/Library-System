@@ -74,6 +74,11 @@ public class LibrarianManageView extends javax.swing.JFrame {
         jPanel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         btnQuanLiSach.setText("Quản lí sách");
+        btnQuanLiSach.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnQuanLiSachActionPerformed(evt);
+            }
+        });
 
         btnQuanLiThe.setText("Quản lí thẻ");
         btnQuanLiThe.addActionListener(new java.awt.event.ActionListener() {
@@ -143,6 +148,16 @@ public class LibrarianManageView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnQuanLiTheActionPerformed
 
+    private void btnQuanLiSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuanLiSachActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnQuanLiSachActionPerformed
+    /**
+     * Hàm bắt sự kiện khi click button quản lí sách
+     * @param listener 
+     */
+    public void addButtonManageBookListener(ActionListener listener){
+        btnQuanLiSach.addActionListener(listener);
+    }
     /**
      * Hàm bắt sự kiện khi click button quản lí thẻ
      * @param listener 
