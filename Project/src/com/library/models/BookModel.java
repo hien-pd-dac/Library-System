@@ -8,6 +8,7 @@ package com.library.models;
 import com.library.helpers.ConnectDatabase;
 import com.library.helpers.Session;
 import java.sql.Connection;
+import com.library.utils.Utils;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -29,31 +30,29 @@ public class BookModel {
     private String ISBN;
     
     public static ResultSet getListBookResult() {
-        String sqlCommand;
-        if (Session.get("bookIDSearching") == null) {
-            Session.add("bookIDSearching", "all");
+        String sqlCommand = null;
+        if (Session.get("selectedCombo") == null) {
+            Session.add("selectedCombo", "all");
         }
-        if( Session.get("bookIDSearching").equals("all")) {
-            sqlCommand = "SELECT * FROM book";
-        } else {
-            sqlCommand = "SELECT * FROM book WHERE BookID = ? ";
-        }
-        
         ResultSet rs = null;
         PreparedStatement pst;
         try {
-//            ConnectDatabase.getConnect();
-            pst = ConnectDatabase.con.prepareStatement(sqlCommand);
-            if ( ! Session.get("bookIDSearching").equals("all")) {
-                pst.setString(1, Session.get("bookIDSearching"));
+            if ( ! Session.get("selectedCombo").equals("all")) {
+                sqlCommand = String.format("SELECT * FROM `book` WHERE `%s` = '%s'",
+                        Session.get("selectedCombo"), Session.get("searchInput"));
+                
+            } else {
+                sqlCommand = "SELECT * FROM book";
             }
+            Utils.debug(sqlCommand);
+            pst = ConnectDatabase.con.prepareStatement(sqlCommand);
             rs = pst.executeQuery();
-            int rowcount = 0;
+            int rowcount = 0; System.out.println(rs.last());
             if (rs.last()) {
-              rowcount = rs.getRow();
+              rowcount = rs.getRow(); Utils.debug(Integer.toString(rowcount));
               rs.beforeFirst(); // not rs.first() because the rs.next() below will move on, missing the first element
             }
-            if (rowcount == 0) return null;
+            if (rowcount == 0) {Utils.debug("null result!");return null;}
             else
                 return rs;
             
