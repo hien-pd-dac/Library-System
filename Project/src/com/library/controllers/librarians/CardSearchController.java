@@ -6,6 +6,7 @@
 package com.library.controllers.librarians;
 
 import com.library.controllers.BaseController;
+import com.library.controllers.CardTestController;
 import com.library.controllers.MainController;
 import com.library.helpers.Session;
 import com.library.models.CardModel;
@@ -24,7 +25,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Ronaldo Hanh
  */
-public class CardSearchController implements BaseController {
+public class CardSearchController implements BaseController, CardTestController {
 
     private CardSearchView view;
     private CardModel card;
@@ -65,6 +66,59 @@ public class CardSearchController implements BaseController {
                 table.setValueAt("", i, j);
             }
         }
+    }
+
+    @Override
+    public int testIssueCard(String userName, String day, String month, String year, String activateCode) {
+        return 1;
+    }
+
+    /**
+     * Hàm test Search Card để chạy cho testUnit 
+     * @param cardID
+     * @param userName
+     * @param fullName
+     * @return 
+     */
+    @Override
+    public int testSearchCard(String cardID, String userName, String fullName) {
+        int result = 0;
+        Session.add("cardID", cardID);
+        Session.add("userName", userName);
+        Session.add("fullName", fullName);
+        System.out.println(Session.get("cardID") + Session.get("userName") + Session.get("fullName"));
+        if (Session.get("cardID") == null && Session.get("userName") == null && Session.get("fullName") == null) {
+            return 0;
+        } else {
+            if (Session.get("cardID") != null && Session.get("userName") == null && Session.get("fullName") == null) {
+                card.searchFollowCardID();
+                result = Integer.parseInt(Session.get("testSearchCardResult"));
+            } else if (Session.get("cardID") == null && Session.get("userName") != null && Session.get("fullName") == null) {
+                card.searchFollowFullName();
+                result = Integer.parseInt(Session.get("testSearchCardResult"));
+            }
+            else if(Session.get("cardID") == null && Session.get("userName") == null && Session.get("fullName") != null){
+                card.searchFollowFullName();
+                result = Integer.parseInt(Session.get("testSearchCardResult"));
+            }
+            else if(Session.get("cardID") != null && Session.get("userName") != null && Session.get("fullName") == null){
+                card.searchFollowCardIDUserName();
+                result = Integer.parseInt(Session.get("testSearchCardResult"));
+            }
+            else if(Session.get("cardID") != null && Session.get("userName") == null && Session.get("fullName") != null){
+                card.searchFollowCardIDFullName();
+                result = Integer.parseInt(Session.get("testSearchCardResult"));
+            }
+            else if(Session.get("cardID") == null && Session.get("userName") != null && Session.get("fullName") != null){
+                card.searchFollowUserNameFullName();
+                result = Integer.parseInt(Session.get("testSearchCardResult"));
+            }
+            else if(Session.get("cardID") != null && Session.get("userName") != null && Session.get("fullName") != null){
+                card.searchFollowAll();
+                 result = Integer.parseInt(Session.get("testSearchCardResult"));
+            }
+        }
+        return result;
     }
 
     /**

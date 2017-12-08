@@ -47,6 +47,9 @@ public class CardIssueController implements BaseController, CardTestController {
         cardIssueView.setVisible(true);
     }
 
+    public int testSearchCard(String cardID, String userName, String fullName){
+        return 1;
+    }
     /**
      * Hàm sử dụng để test phát hành thẻ trong test unit
      * @param userName
@@ -56,26 +59,8 @@ public class CardIssueController implements BaseController, CardTestController {
      * @param activateCode
      * @return 
      */
-    public int testIssueCard(String userName, int day, int month, int year, String activateCode) {
+    public int testIssueCard(String userName, String day, String month, String year, String activateCode) {
         int result = 0;
-        if(userName.equals("0")){
-            System.out.println("username null");
-           cardIssueView.getUserNametf().setText("");
-        }
-        else{
-            //System.out.println("username: " + userName);
-            cardIssueView.getUserNametf().setText(userName);
-        }
-        if(activateCode.equals("0")){
-            cardIssueView.getActivationCodetf().setText("");
-        }
-        else{
-            System.out.println("activteCode: " + activateCode);
-            cardIssueView.getActivationCodetf().setText(activateCode);
-        }
-        cardIssueView.getDaycbb().setSelectedItem(day);
-        cardIssueView.getMonthcbb().setSelectedItem(month);
-        cardIssueView.getYearcbb().setSelectedItem(year);
         String date = cardIssueView.getYear() + "-" + cardIssueView.getMonth() + "-" + cardIssueView.getDay();
         Session.add("userIDIssueCard", cardIssueView.getUserName());
         Session.add("activationCode", cardIssueView.getActivationCode());
@@ -85,7 +70,6 @@ public class CardIssueController implements BaseController, CardTestController {
         Session.add("date", cardIssueView.getDay());
         card.insert();
         result = Integer.parseInt(Session.get("resultTestIssue"));
-        System.out.println("result: "+  result);
         return result;
     }
 
