@@ -31,8 +31,8 @@ public class ListBookController implements BaseController {
     private BookModel bookModel;
     
     public ListBookController () {
-        if(Session.get("bookIDSearching") == null)
-            Session.add("bookIDSearching", "all");
+        if(Session.get("selectedCombo") == null)
+            Session.add("selectedCombo", "all");
         listBookView = new ListBookView();
         setDataTable();
         listBookView.setListBookViewListerner(new ListBookViewAction());
@@ -87,13 +87,17 @@ public class ListBookController implements BaseController {
                 } break;
                 case SEARCH_BTN: {
                     // VIET HUNG TODO
-                    String bookIDSearching = listBookView.getTextInput();
-                    if (bookIDSearching.equals("")) {
-                        Session.remove("bookIDSearching");
-                        Session.add("bookIDSearching", "all");
+                    String searchInput = listBookView.getTextInput();
+                    String selectedCombo = listBookView.getSelectedCombo();
+                    if (searchInput.equals("")) {
+                        Session.remove("selectedCombo");
+                        Session.remove("searchInput");
+                        Session.add("selectedCombo", "all");
                     } else {
-                        Session.remove("bookIDSearching");
-                        Session.add("bookIDSearching", bookIDSearching);
+                        Session.remove("selectedCombo");
+                        Session.remove("searchInput");
+                        Session.add("selectedCombo", selectedCombo);
+                        Session.add("searchInput", searchInput);
                     }
                     setDataTable();
                     

@@ -84,11 +84,7 @@ public class BorrowerMenuView extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    }// </editor-fold>                        
-
-    private void searchBookBtnActionPerformed(java.awt.event.ActionEvent evt) {                                              
-         // TODO add your handling code here:
-    }                                             
+    }// </editor-fold>                                                                
 
     /**
      * @param args the command line arguments
