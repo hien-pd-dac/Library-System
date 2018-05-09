@@ -5,11 +5,16 @@
  */
 package com.library.views.librarians;
 
+import static com.library.utils.Utils.WINDOW_HEIGHT;
+import static com.library.utils.Utils.WINDOW_WIDTH;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JTextField;
 
 /**
- *
+ * Card Issue View
  * @author Ronaldo Hanh
  */
 public class CardIssueView extends javax.swing.JFrame {
@@ -20,8 +25,10 @@ public class CardIssueView extends javax.swing.JFrame {
      */
     public CardIssueView() {
         initComponents();
+        this.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         this.setLocationRelativeTo(null);
-        this.setPreferredSize(new Dimension(800, 500));
+        this.setResizable(false);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setExperiedDay();
     }
 
@@ -140,7 +147,7 @@ public class CardIssueView extends javax.swing.JFrame {
 
         jPanel3Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {cbbDay, cbbMonth, cbbYear, jLabel10, jLabel8, jLabel9, tfMaKichHoat, tfUserName});
 
-        jPanel4.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel4.setBackground(new java.awt.Color(23, 240, 203));
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel4.setPreferredSize(new java.awt.Dimension(594, 100));
@@ -148,7 +155,7 @@ public class CardIssueView extends javax.swing.JFrame {
         jLabel3.setBackground(new java.awt.Color(204, 255, 204));
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Thư viện Bách Khoa");
+        jLabel3.setText("HUST LIBRARY SYSTEM");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -218,11 +225,19 @@ public class CardIssueView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnQuayLaiActionPerformed
 
+    /**
+     * Hàm bắt sự kiện khi click vào button phát hành thẻ
+     * @param listener 
+     */
     public void addButtonIssueCardListener(ActionListener listener){
         //System.out.println("11111111111");
         btnPhatHanhThe.addActionListener(listener);
     }
     
+    /**
+     * Hàm bắt sự kiện khi click button quay lại
+     * @param listener 
+     */
     public void addButtonReturnListener(ActionListener listener){
         btnQuayLai.addActionListener(listener);
     }
@@ -242,26 +257,86 @@ public class CardIssueView extends javax.swing.JFrame {
         }
     }
     
-    public String getUserID(){
+    /**
+     * Hàm lấy giá trị Username
+     * @return giá trị tên đăng nhập
+     */
+    public String getUserName(){
         return tfUserName.getText();
     }
     
+    /**
+     * Hàm lấy ngày hết hạn
+     * @return ngày hết hạn
+     */
     public String getDay(){
         return cbbDay.getSelectedItem().toString();
     }
     
+    /**
+     * Hàm lấy tháng hệt hạn
+     * @return tháng hết hạn
+     */
     public String getMonth(){
         return cbbMonth.getSelectedItem().toString();
     }
      
+    /**
+     * Hàm lấy năm hết hạn
+     * @return năm hết hạn
+     */
     public String getYear(){
         return cbbYear.getSelectedItem().toString();
     }
     
+    /**
+     * Hàm lấy mã kích hoạt
+     * @return mã kích hoạt
+     */
     public String getActivationCode(){
         return tfMaKichHoat.getText();
     }
-      
+    
+    /**
+     * Hàm trả về Text Field UserName
+     * @return JTextField tfUserName
+     */
+    public JTextField getUserNametf(){
+        return tfUserName;
+    }
+    
+    /**
+     * Hàm trả về TextField Activation Code
+     * @return JTextField tfActivationCode
+    */
+    public JTextField getActivationCodetf(){
+        return this.tfMaKichHoat;
+    }
+    
+    /**
+     * Hàm trả về JCombobox Day
+     * @return JCombobox cbbDay
+     */
+    public JComboBox getDaycbb(){
+        return this.cbbDay;
+    }
+    
+    /**
+     * Hàm trả về JCombobox Month
+     * @return JCombobox cbbMonth
+     */
+    public JComboBox getMonthcbb(){
+        return this.cbbMonth;
+    }
+    
+    /**
+     * Hàm trả về JCombobox Year
+     * @return JCombobox cbbYear
+     */
+    public JComboBox getYearcbb(){
+        return this.cbbYear;
+    }
+    
     /**
      * @param args the command line arguments
      */

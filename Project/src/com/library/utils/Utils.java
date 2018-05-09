@@ -34,11 +34,15 @@ public class Utils {
     public static final String SUBMIT_BTN = "submitBtn";
     public static final String ADD_MORE_BTN = "addMoreBtn";
 
-    public static void debug(Class clz,String debug){
-        if (true){
-            debug = debug == null ? "Null debug string!" : debug;
-            String name = clz.getCanonicalName()==null?"Debug": clz.getCanonicalName();
-            System.out.println(name+":"+debug);
-        }
+//    public static void debug(Class clz,String debug){
+//        if (true){
+//            debug = debug == null ? "Null debug string!" : debug;
+//            String name = clz.getCanonicalName()==null?"Debug": clz.getCanonicalName();
+//            System.out.println(name+":"+debug);
+//        }
+//    }
+    public static void debug(String msg) {
+        System.out.println("'"+msg+"'");
     }
+    
 }

@@ -17,6 +17,8 @@ import java.util.logging.Logger;
  * @author hpd
  */
 public class UserModel {
+
+    
     private String userID;
     private String username;
     private String password;
@@ -34,9 +36,10 @@ public class UserModel {
      */
     public static int login(String username, String password) throws SQLException {
         String sqlCommand = "SELECT COUNT(*) as cot from user WHERE username = ? and password = ?";
-        ResultSet rs = null;
-        PreparedStatement pst = null;
+        ResultSet rs;
+        PreparedStatement pst;
         try {
+//            ConnectDatabase.getConnect();
             pst = ConnectDatabase.con.prepareStatement(sqlCommand);
             pst.setString(1, username);
             pst.setString(2, password);
@@ -55,6 +58,48 @@ public class UserModel {
             rs.next();
             return rs.getInt("role");
         }
+    }
+    
+    public static int getUserID(String username) {
+        String sqlCommand = "SELECT UserID from user WHERE username = ?";
+        ResultSet rs;
+        PreparedStatement pst;
+        try {
+//            ConnectDatabase.getConnect();
+            pst = ConnectDatabase.con.prepareStatement(sqlCommand);
+            pst.setString(1, username);
+            rs = pst.executeQuery();
+            if (!rs.next()) {
+                return -1;
+            } else {
+                return rs.getInt("UserID");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserModel.class.getName()).log(Level.SEVERE, null, ex);
+            return -2;
+        }
+    }
+    
+    
+    public static int getCardID(String userID) {
+        String sqlCommand = "SELECT CardID FROM card WHERE UserID = ?";
+        ResultSet rs;
+        PreparedStatement pst;
+        try {
+//            ConnectDatabase.getConnect();
+            pst = ConnectDatabase.con.prepareStatement(sqlCommand);
+            pst.setString(1, userID);
+            rs = pst.executeQuery();
+            if (!rs.next()) {
+                return -1;
+            } else {
+                return rs.getInt("CardID");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserModel.class.getName()).log(Level.SEVERE, null, ex);
+            return -2;
+        }
+        
     }
     
     public static void main(String[] args) throws SQLException {

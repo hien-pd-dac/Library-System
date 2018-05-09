@@ -9,6 +9,7 @@ import static com.library.utils.Utils.*;
 import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 /**
  *
@@ -32,7 +33,10 @@ public class BorrowerMenuView extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
-//        this.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+        
+        JPanel masterPane = new JPanel(new BorderLayout());
+        this.add(masterPane);
+        
         headerPanel = new javax.swing.JPanel();
         hustLabel = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -51,7 +55,7 @@ public class BorrowerMenuView extends javax.swing.JFrame {
         hustLabel.setText("HUST LIBRARY SYSTEM");
         headerPanel.add(hustLabel);
 
-        getContentPane().add(headerPanel, java.awt.BorderLayout.PAGE_START);
+        masterPane.add(headerPanel, java.awt.BorderLayout.PAGE_START);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEmptyBorder(50, 200, 50, 200));
 
@@ -74,17 +78,13 @@ public class BorrowerMenuView extends javax.swing.JFrame {
         
         jPanel2.add(jPanel3, BorderLayout.CENTER);
 
-        getContentPane().add(jPanel2, java.awt.BorderLayout.CENTER);
+        masterPane.add(jPanel2, java.awt.BorderLayout.CENTER);
         
         this.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    }// </editor-fold>                        
-
-    private void searchBookBtnActionPerformed(java.awt.event.ActionEvent evt) {                                              
-         // TODO add your handling code here:
-    }                                             
+    }// </editor-fold>                                                                
 
     /**
      * @param args the command line arguments

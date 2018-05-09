@@ -5,11 +5,15 @@
  */
 package com.library.views.librarians;
 
+import static com.library.utils.Utils.WINDOW_HEIGHT;
+import static com.library.utils.Utils.WINDOW_WIDTH;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import javax.swing.JFrame;
 
 /**
- *
+ * Card Manage View
  * @author Ronaldo Hanh
  */
 public class CardManageView extends javax.swing.JFrame {
@@ -19,8 +23,10 @@ public class CardManageView extends javax.swing.JFrame {
      */
     public CardManageView() { 
         initComponents();
+        this.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         this.setLocationRelativeTo(null);
-         this.setPreferredSize(new Dimension(800, 500));
+        this.setResizable(false);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     /**
@@ -43,7 +49,7 @@ public class CardManageView extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(800, 500));
 
-        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel1.setBackground(new java.awt.Color(23, 240, 203));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -80,11 +86,24 @@ public class CardManageView extends javax.swing.JFrame {
                 btnCardIssueActionPerformed(evt);
             }
         });
+        btnCardIssue.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnCardIssueKeyPressed(evt);
+            }
+        });
 
         btnCardSearch.setText("Tìm kiếm thẻ");
         btnCardSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCardSearchActionPerformed(evt);
+            }
+        });
+        btnCardSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnCardSearchKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                btnCardSearchKeyReleased(evt);
             }
         });
 
@@ -144,9 +163,8 @@ public class CardManageView extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnBackToMenuLibrarian, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(2, 2, 2)))
-                .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(71, Short.MAX_VALUE))
+                .addContainerGap(89, Short.MAX_VALUE))
         );
 
         pack();
@@ -174,6 +192,23 @@ public class CardManageView extends javax.swing.JFrame {
     private void btnBackToMenuLibrarianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackToMenuLibrarianActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBackToMenuLibrarianActionPerformed
+
+    private void btnCardIssueKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnCardIssueKeyPressed
+  
+        if(evt.getKeyCode() == KeyEvent.VK_DOWN){
+            btnCardSearch.requestFocus();
+        }
+    }//GEN-LAST:event_btnCardIssueKeyPressed
+
+    private void btnCardSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnCardSearchKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCardSearchKeyReleased
+
+    private void btnCardSearchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnCardSearchKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_DOWN || evt.getKeyCode() == KeyEvent.VK_UP){
+            btnCardIssue.requestFocus();
+        }
+    }//GEN-LAST:event_btnCardSearchKeyPressed
 
     /**
      * @param args the command line arguments
